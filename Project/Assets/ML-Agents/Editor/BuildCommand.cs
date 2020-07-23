@@ -29,12 +29,13 @@ static class BuildCommand
 
     static string[] GetEnabledScenes()
     {
-        return (
-            from scene in EditorBuildSettings.scenes
-            where scene.enabled
-            where !string.IsNullOrEmpty(scene.path)
-            select scene.path
-        ).ToArray();
+       // return (
+       //     from scene in EditorBuildSettings.scenes
+       //     where scene.enabled
+       //     where !string.IsNullOrEmpty(scene.path)
+       //     select scene.path
+       // ).ToArray();
+        return new[] {"Assets/ML-Agents/Examples/FoodCollector/Scenes/FoodCollector.unity"};
     }
 
     static BuildTarget GetBuildTarget()
