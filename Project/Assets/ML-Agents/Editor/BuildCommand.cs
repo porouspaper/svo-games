@@ -164,7 +164,7 @@ static class BuildCommand
     {
         Console.WriteLine(":: Performing build");
 
-        var buildTarget = GetBuildTarget();
+        var buildTarget = BuildTarget.StandaloneLinux64;//GetBuildTarget();
 
         if (buildTarget == BuildTarget.Android) {
             HandleAndroidAppBundle();
@@ -174,7 +174,7 @@ static class BuildCommand
 
         var buildPath      = GetBuildPath();
         var buildName      = GetBuildName();
-        var buildOptions   = GetBuildOptions();
+        var buildOptions   = BuildOptions.None;//GetBuildOptions();
         var fixedBuildPath = GetFixedBuildPath(buildTarget, buildPath, buildName);
 
         SetScriptingBackendFromEnv(buildTarget);
