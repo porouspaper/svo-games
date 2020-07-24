@@ -612,6 +612,111 @@ PrefabInstance:
       propertyPath: probabilities.Array.data[2]
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 114276061479012222, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_DetectableTags.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114443152683847924, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_DetectableTags.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114443152683847924, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_DetectableTags.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114443152683847924, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_DetectableTags.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114443152683847924, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: rayHitColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114443152683847924, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: rayHitColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114443152683847924, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: rayHitColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114443152683847924, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: rayHitColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644889237473510, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_DetectableTags.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_DetectableTags.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_SensorName
+      value: RayPerceptionSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_DetectableTags.Array.data[0]
+      value: food
+      objectReference: {fileID: 0}
+    - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_DetectableTags.Array.data[1]
+      value: agent
+      objectReference: {fileID: 0}
+    - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_DetectableTags.Array.data[2]
+      value: wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_RaysPerDirection
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_MaxRayDegrees
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_SphereCastRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_RayLength
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_RayLayerMask.m_Bits
+      value: 307
+      objectReference: {fileID: 0}
+    - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_ObservationStacks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114986980423924774, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_DetectableTags.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38400a68c4ea54b52998e34ee238d1a7, type: 3}
 --- !u!1 &1574236047
