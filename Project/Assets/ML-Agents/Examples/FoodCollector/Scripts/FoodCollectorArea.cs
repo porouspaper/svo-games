@@ -10,7 +10,7 @@ public class FoodCollectorArea : MonoBehaviour
     public float radius;
     public float[] probabilities;
     private float timeElapsed = 0;
-    private float timeNeeded = 3;
+    public float timeNeeded = 1;
 
     void CreateFood(int num, GameObject type)
     {
