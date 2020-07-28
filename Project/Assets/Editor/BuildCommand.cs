@@ -10,9 +10,6 @@ static class BuildCommand
     private const string KEY_ALIAS_NAME = "KEY_ALIAS_NAME";
     private const string KEYSTORE       = "keystore.keystore";
     private const string BUILD_OPTIONS_ENV_VAR = "BuildOptions";
-    private const string ANDROID_BUNDLE_VERSION_CODE = "BUNDLE_VERSION_CODE";
-    private const string ANDROID_APP_BUNDLE = "BUILD_APP_BUNDLE";
-    private const string SCRIPTING_BACKEND_ENV_VAR = "SCRIPTING_BACKEND";
 
     static string GetArgument(string name)
     {
@@ -29,12 +26,13 @@ static class BuildCommand
 
     static string[] GetEnabledScenes()
     {
-       // return (
-       //     from scene in EditorBuildSettings.scenes
-       //     where scene.enabled
-       //     where !string.IsNullOrEmpty(scene.path)
-       //     select scene.path
-       // ).ToArray();
+//        return (
+//            from scene in EditorBuildSettings.scenes
+//            where scene.enabled
+//            where !string.IsNullOrEmpty(scene.path)
+//            select scene.path
+//        ).ToArray();
+
         return new[] {"Assets/ML-Agents/Examples/FoodCollector/Scenes/FoodCollector.unity"};
     }
 
@@ -83,16 +81,12 @@ static class BuildCommand
         return buildName;
     }
 
-    static string GetFixedBuildPath(BuildTarget buildTarget, string buildPath, string buildName)
+    static string GetFixedBuildPath(BuildTarget buildTarget, string buildPath, string buildName, BuildOptions buildOptions)
     {
         if (buildTarget.ToString().ToLower().Contains("windows")) {
             buildName += ".exe";
-        } else if (buildTarget == BuildTarget.Android) {
-#if UNITY_2018_3_OR_NEWER
-            buildName += EditorUserBuildSettings.buildAppBundle ? ".aab" : ".apk";
-#else
+        } else if (buildTarget == BuildTarget.Android && buildOptions == BuildOptions.None) {
             buildName += ".apk";
-#endif
         }
         return buildPath + buildName;
     }
@@ -144,93 +138,32 @@ static class BuildCommand
         return !string.IsNullOrEmpty(value);
     }
 
-    static void SetScriptingBackendFromEnv(BuildTarget platform) {
-        var targetGroup = BuildPipeline.GetBuildTargetGroup(platform);
-        if (TryGetEnv(SCRIPTING_BACKEND_ENV_VAR, out string scriptingBackend)) {
-            if (scriptingBackend.TryConvertToEnum(out ScriptingImplementation backend)) {
-                Console.WriteLine($":: Setting ScriptingBackend to {backend}");
-                PlayerSettings.SetScriptingBackend(targetGroup, backend);
-            } else {
-                string possibleValues = string.Join(", ", Enum.GetValues(typeof(ScriptingImplementation)).Cast<ScriptingImplementation>());
-                throw new Exception($"Could not find '{scriptingBackend}' in ScriptingImplementation enum. Possible values are: {possibleValues}");
-            }
-        } else {
-            var defaultBackend = PlayerSettings.GetDefaultScriptingBackend(targetGroup);
-            Console.WriteLine($":: Using project's configured ScriptingBackend (should be {defaultBackend} for tagetGroup {targetGroup}");
-        }
-    }
-
     static void PerformBuild()
     {
         Console.WriteLine(":: Performing build");
 
-        var buildTarget = BuildTarget.StandaloneLinux64;//GetBuildTarget();
+        var buildTarget = GetBuildTarget();
 
         if (buildTarget == BuildTarget.Android) {
-            HandleAndroidAppBundle();
-            HandleAndroidBundleVersionCode();
             HandleAndroidKeystore();
         }
 
         var buildPath      = GetBuildPath();
         var buildName      = GetBuildName();
         var buildOptions   = GetBuildOptions();
-        var fixedBuildPath = GetFixedBuildPath(buildTarget, buildPath, buildName);
+        var fixedBuildPath = GetFixedBuildPath(buildTarget, buildPath, buildName, buildOptions);
 
-        SetScriptingBackendFromEnv(buildTarget);
-
-        var buildReport = BuildPipeline.BuildPlayer(GetEnabledScenes(), fixedBuildPath, buildTarget, buildOptions);
-
-        if (buildReport.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded)
-            throw new Exception($"Build ended with {buildReport.summary.result} status");
-
+        BuildPipeline.BuildPlayer(GetEnabledScenes(), fixedBuildPath, buildTarget, buildOptions);
         Console.WriteLine(":: Done with build");
-    }
-
-    private static void HandleAndroidAppBundle()
-    {
-        if (TryGetEnv(ANDROID_APP_BUNDLE, out string value))
-        {
-#if UNITY_2018_3_OR_NEWER
-            if (bool.TryParse(value, out bool buildAppBundle))
-            {
-                EditorUserBuildSettings.buildAppBundle = buildAppBundle;
-                Console.WriteLine($":: {ANDROID_APP_BUNDLE} env var detected, set buildAppBundle to {value}.");
-            }
-            else
-            {
-                Console.WriteLine($":: {ANDROID_APP_BUNDLE} env var detected but the value \"{value}\" is not a boolean.");
-
-            }
-#else
-            Console.WriteLine($":: {ANDROID_APP_BUNDLE} env var detected but does not work with lower Unity version than 2018.3");
-#endif
-        }
-    }
-
-    private static void HandleAndroidBundleVersionCode()
-    {
-        if (TryGetEnv(ANDROID_BUNDLE_VERSION_CODE, out string value))
-        {
-            if (int.TryParse(value, out int version))
-            {
-                PlayerSettings.Android.bundleVersionCode = version;
-                Console.WriteLine($":: {ANDROID_BUNDLE_VERSION_CODE} env var detected, set the bundle version code to {value}.");
-            }
-            else
-                Console.WriteLine($":: {ANDROID_BUNDLE_VERSION_CODE} env var detected but the version value \"{value}\" is not an integer.");
-        }
     }
 
     private static void HandleAndroidKeystore()
     {
-#if UNITY_2019_1_OR_NEWER
         PlayerSettings.Android.useCustomKeystore = false;
-#endif
 
         if (!File.Exists(KEYSTORE)) {
             Console.WriteLine($":: {KEYSTORE} not found, skipping setup, using Unity's default keystore");
-            return;
+            return;    
         }
 
         PlayerSettings.Android.keystoreName = KEYSTORE;
@@ -254,9 +187,8 @@ static class BuildCommand
             Console.WriteLine($":: ${KEY_ALIAS_PASS} env var not set, skipping setup, using Unity's default keystore");
             return;
         }
-#if UNITY_2019_1_OR_NEWER
+
         PlayerSettings.Android.useCustomKeystore = true;
-#endif
         PlayerSettings.Android.keystorePass = keystorePass;
         PlayerSettings.Android.keyaliasPass = keystoreAliasPass;
     }
