@@ -174,7 +174,7 @@ static class BuildCommand
 
         var buildPath      = GetBuildPath();
         var buildName      = GetBuildName();
-        var buildOptions   = BuildOptions.None;//GetBuildOptions();
+        var buildOptions   = GetBuildOptions();
         var fixedBuildPath = GetFixedBuildPath(buildTarget, buildPath, buildName);
 
         SetScriptingBackendFromEnv(buildTarget);
@@ -230,7 +230,7 @@ static class BuildCommand
 
         if (!File.Exists(KEYSTORE)) {
             Console.WriteLine($":: {KEYSTORE} not found, skipping setup, using Unity's default keystore");
-            return;    
+            return;
         }
 
         PlayerSettings.Android.keystoreName = KEYSTORE;
@@ -261,4 +261,3 @@ static class BuildCommand
         PlayerSettings.Android.keyaliasPass = keystoreAliasPass;
     }
 }
-
