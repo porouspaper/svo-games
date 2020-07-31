@@ -1,8 +1,7 @@
 # # Unity ML-Agents Toolkit
 # ## ML-Agent Learning (Ghost Trainer)
 
-from collections import defaultdict
-from typing import Deque, Dict, DefaultDict, List, cast
+from typing import Deque, Dict, List, cast
 
 import numpy as np
 
@@ -59,7 +58,7 @@ class GhostTrainer(Trainer):
         :param artifact_path: Path to store artifacts from this trainer.
         """
 
-        super().__init__(
+        super(GhostTrainer, self).__init__(
             brain_name, trainer_settings, training, artifact_path, reward_buff_cap
         )
 
@@ -69,9 +68,9 @@ class GhostTrainer(Trainer):
         self._internal_trajectory_queues: Dict[str, AgentManagerQueue[Trajectory]] = {}
         self._internal_policy_queues: Dict[str, AgentManagerQueue[Policy]] = {}
 
-        self._team_to_name_to_policy_queue: DefaultDict[
+        self._team_to_name_to_policy_queue: Dict[
             int, Dict[str, AgentManagerQueue[Policy]]
-        ] = defaultdict(dict)
+        ] = {}
 
         self._name_to_parsed_behavior_id: Dict[str, BehaviorIdentifiers] = {}
 
@@ -118,6 +117,7 @@ class GhostTrainer(Trainer):
         self.current_policy_snapshot: Dict[str, List[float]] = {}
 
         self.snapshot_counter: int = 0
+        self.policies: Dict[str, TFPolicy] = {}
 
         # wrapped_training_team and learning team need to be separate
         # in the situation where new agents are created destroyed
@@ -298,11 +298,21 @@ class GhostTrainer(Trainer):
         """
         self.trainer.end_episode()
 
-    def save_model(self) -> None:
+    def save_model(self, name_behavior_id: str) -> None:
         """
-        Forwarding call to wrapped trainers save_model.
+        Forwarding call to wrapped trainers save_model
         """
-        self.trainer.save_model()
+        parsed_behavior_id = self._name_to_parsed_behavior_id[name_behavior_id]
+        brain_name = parsed_behavior_id.brain_name
+        self.trainer.save_model(brain_name)
+
+    def export_model(self, name_behavior_id: str) -> None:
+        """
+        Forwarding call to wrapped trainers export_model.
+        """
+        parsed_behavior_id = self._name_to_parsed_behavior_id[name_behavior_id]
+        brain_name = parsed_behavior_id.brain_name
+        self.trainer.export_model(brain_name)
 
     def create_policy(
         self, parsed_behavior_id: BehaviorIdentifiers, behavior_spec: BehaviorSpec
@@ -414,9 +424,14 @@ class GhostTrainer(Trainer):
         """
         super().publish_policy_queue(policy_queue)
         parsed_behavior_id = self._name_to_parsed_behavior_id[policy_queue.behavior_id]
-        self._team_to_name_to_policy_queue[parsed_behavior_id.team_id][
-            parsed_behavior_id.brain_name
-        ] = policy_queue
+        try:
+            self._team_to_name_to_policy_queue[parsed_behavior_id.team_id][
+                parsed_behavior_id.brain_name
+            ] = policy_queue
+        except KeyError:
+            self._team_to_name_to_policy_queue[parsed_behavior_id.team_id] = {
+                parsed_behavior_id.brain_name: policy_queue
+            }
         if parsed_behavior_id.team_id == self.wrapped_trainer_team:
             # With a future multiagent trainer, this will be indexed by 'role'
             internal_policy_queue: AgentManagerQueue[Policy] = AgentManagerQueue(
@@ -451,3 +466,4 @@ class GhostTrainer(Trainer):
                 parsed_behavior_id.brain_name
             ] = internal_trajectory_queue
             self.trainer.subscribe_trajectory_queue(internal_trajectory_queue)
+
