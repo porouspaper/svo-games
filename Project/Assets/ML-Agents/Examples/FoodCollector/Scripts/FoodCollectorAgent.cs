@@ -13,6 +13,7 @@ public class FoodCollectorAgent : Agent
     float m_LaserLength;
     // Speed of agent rotation.
     public float turnSpeed = 300;
+    public int agent_number;
 
     // Speed of agent movement.
     public float moveSpeed = 2;
@@ -21,7 +22,6 @@ public class FoodCollectorAgent : Agent
     public Material goodMaterial;
     public Material frozenMaterial;
     public GameObject myLaser;
-    public bool contribute;
     public bool useVectorObs;
 
     EnvironmentParameters m_ResetParams;
@@ -119,6 +119,7 @@ public class FoodCollectorAgent : Agent
 
         if (m_Shoot)
         {
+            logLaser();
             var myTransform = transform;
             myLaser.transform.localScale = new Vector3(1f, 1f, m_LaserLength);
             var rayDir = 25.0f * myTransform.forward;
@@ -129,6 +130,7 @@ public class FoodCollectorAgent : Agent
                 if (hit.collider.gameObject.CompareTag("agent"))
                 {
                     AddReward(-1);
+                    logReward(-1);
                     hit.collider.gameObject.GetComponent<FoodCollectorAgent>().Hit();
                 }
             }
@@ -142,9 +144,31 @@ public class FoodCollectorAgent : Agent
     void Hit()
     {
         AddReward(-50);
+        logReward(-50);
     }
 
+    void logLaser()
+    {
+        if(agent_number == 0)
+        {
+            m_FoodCollecterSettings.agent0laser += 1;
+        }
+        else if(agent_number == 1){
+            m_FoodCollecterSettings.agent1laser += 1;
+        }
+    }
 
+    void logReward(int val)
+    {
+        if (agent_number == 0)
+        {
+            m_FoodCollecterSettings.agent0return += val;
+        }
+        else if (agent_number == 1)
+        {
+            m_FoodCollecterSettings.agent1return += val;
+        }
+    }
 
 
     public override void OnActionReceived(float[] vectorAction)
@@ -192,10 +216,7 @@ public class FoodCollectorAgent : Agent
         {
             collision.gameObject.GetComponent<FoodLogic>().OnEaten();
             AddReward(1f);
-            if (contribute)
-            {
-                m_FoodCollecterSettings.totalScore += 1;
-            }
+            logReward(1);
         }
     }
 
