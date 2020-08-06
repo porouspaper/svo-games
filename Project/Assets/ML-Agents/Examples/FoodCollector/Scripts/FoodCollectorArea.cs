@@ -49,7 +49,7 @@ public class FoodCollectorArea : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Time.time > timeElapsed)
+        /*if (Time.time > timeElapsed)
         {
             //print("updating");
             GameObject[] foods = GameObject.FindGameObjectsWithTag("food");
@@ -98,7 +98,7 @@ public class FoodCollectorArea : MonoBehaviour
             }
             timeElapsed = timeNeeded + timeElapsed;
 
-        }
+        }*/
     }
 
 }
