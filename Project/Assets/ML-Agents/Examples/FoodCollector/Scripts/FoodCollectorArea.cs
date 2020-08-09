@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Collections;
 
 public class FoodCollectorArea : MonoBehaviour
 {
@@ -47,55 +48,79 @@ public class FoodCollectorArea : MonoBehaviour
 
     }
 
+
+    public static int CompareLoc(Vector3 v1, Vector3 v2)
+    {
+        if(v1.x > v2.x)
+        {
+            return 1;
+        }
+        else if(v1.x < v2.x)
+        {
+            return -1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
     private void FixedUpdate()
     {
         if (Time.time > timeElapsed)
         {
             //print("updating");
             GameObject[] foods = GameObject.FindGameObjectsWithTag("food");
-            Dictionary<Vector3, int> map = new Dictionary<Vector3, int>();
-            foreach (GameObject food in foods)
+            //sort by x
+            //for all x within 2
+            //if 2, spawn with prob 2, etc.
+
+            Func<GameObject, Vector3> getLoc = (x) => x.transform.position;
+            Vector3[] locs = new Vector3[foods.Length];
+            for(int i = 0; i < foods.Length; i++)
             {
-                //print("food loop");
-                Vector3 pos = food.transform.position;
-                for (float i = -radius; i <= radius; i += 0.2f)
+                locs[i] = getLoc(foods[i]);
+            }
+
+            Array.Sort(locs, CompareLoc);
+
+            Vector3 prev = Vector3.zero;
+            for(int i = 0; i < locs.Length; i++)
+            {
+                if (i > 0 && Vector3.Distance(prev, locs[i]) > radius)
                 {
-                    for (float j = -radius; j <= radius; j += 0.2f)
+                    prev = locs[i];
+                    int myLen = probabilities.Length;
+                    int count = 1;
+                    for (int j = i - myLen; j <= i + myLen; j++)
                     {
-                        //print("checking radius loop");
-                        Vector3 pt = new Vector3(i, 0, j) + pos;
-                        float dist = Vector3.Distance(pos, pt);
-                        if (dist < radius)
+                        if (j >= 0 && j < locs.Length)
                         {
-                            print("putting in");
-                            if (map.ContainsKey(pt))
+                            if (Vector3.Distance(locs[i], locs[j]) < radius)
                             {
-                                int val = map[pt];
-                                map[pt] = val + 1;
-                            }
-                            else
-                            {
-                                map.Add(pt, 1);
+                                //print("Distance good");
+                                count += 1;
                             }
                         }
+                    }
+
+                    count = Math.Min(count, myLen);
+
+                    float p = probabilities[count - 1];
+                    var random = new System.Random();
+                    float gen_p = (float)random.NextDouble();
+                    if (gen_p < p)
+                    {
+                        //print("creating food");
+                        Vector3 offset = new Vector3(UnityEngine.Random.Range(-2f, 2f), 0, UnityEngine.Random.Range(-2f, 2f));
+                        CreateFoodLocal(locs[i] + offset);
                     }
                 }
             }
 
-            print(map.Count);
-            foreach (Vector3 pos in map.Keys)
-            {
-                int myLen = probabilities.Length;
-                float p = probabilities[Math.Min(map[pos], myLen) - 1];
-                var random = new System.Random();
-                float gen_p = (float)random.NextDouble();
-                if (gen_p < p)
-                {
-                    print("creating food");
-                    CreateFoodLocal(pos);
-                }
+            
 
-            }
+
             timeElapsed = timeNeeded + timeElapsed;
 
         }

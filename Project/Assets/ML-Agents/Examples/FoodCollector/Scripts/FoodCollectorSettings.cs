@@ -72,9 +72,14 @@ public class FoodCollectorSettings : MonoBehaviour
             m_Recorder.Add("Agent1Laser", agent1laser);
             m_Recorder.Add("TotalLaser", agent0laser + agent1laser);
 
-            int n = (int) (Time.frameCount / 100);
-
-            equality = 1 - (agent0return - agent1return) / (2 * agent0return + agent1return);
+            if (agent0return + agent1return > 0)
+            {
+                equality = 1 - (agent0return - agent1return) / (2 * agent0return + agent1return);
+            }
+            else
+            {
+                equality = 1;
+            }
             m_Recorder.Add("Equality", equality);
         }
     }
