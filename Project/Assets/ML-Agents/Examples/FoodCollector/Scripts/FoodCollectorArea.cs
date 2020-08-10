@@ -71,56 +71,55 @@ public class FoodCollectorArea : MonoBehaviour
         {
             //print("updating");
             GameObject[] foods = GameObject.FindGameObjectsWithTag("food");
-            //sort by x
-            //for all x within 2
-            //if 2, spawn with prob 2, etc.
-
-            Func<GameObject, Vector3> getLoc = (x) => x.transform.position;
-            Vector3[] locs = new Vector3[foods.Length];
-            for(int i = 0; i < foods.Length; i++)
+            if (foods.Length < 1000)
             {
-                locs[i] = getLoc(foods[i]);
-            }
 
-            Array.Sort(locs, CompareLoc);
-
-            Vector3 prev = Vector3.zero;
-            for(int i = 0; i < locs.Length; i++)
-            {
-                if (i > 0 && Vector3.Distance(prev, locs[i]) > radius)
+                Func<GameObject, Vector3> getLoc = (x) => x.transform.position;
+                Vector3[] locs = new Vector3[foods.Length];
+                for (int i = 0; i < foods.Length; i++)
                 {
-                    prev = locs[i];
-                    int myLen = probabilities.Length;
-                    int count = 1;
-                    for (int j = i - myLen; j <= i + myLen; j++)
+                    locs[i] = getLoc(foods[i]);
+                }
+
+                Array.Sort(locs, CompareLoc);
+
+                Vector3 prev = Vector3.zero;
+                for (int i = 0; i < locs.Length; i++)
+                {
+                    if (i > 0 && Vector3.Distance(prev, locs[i]) > radius)
                     {
-                        if (j >= 0 && j < locs.Length)
+                        prev = locs[i];
+                        int myLen = probabilities.Length;
+                        int count = 1;
+                        for (int j = i - myLen; j <= i + myLen; j++)
                         {
-                            if (Vector3.Distance(locs[i], locs[j]) < radius)
+                            if (j >= 0 && j < locs.Length)
                             {
-                                //print("Distance good");
-                                count += 1;
+                                if (Vector3.Distance(locs[i], locs[j]) < radius)
+                                {
+                                    //print("Distance good");
+                                    count += 1;
+                                }
                             }
                         }
-                    }
 
-                    count = Math.Min(count, myLen);
+                        count = Math.Min(count, myLen);
 
-                    float p = probabilities[count - 1];
-                    var random = new System.Random();
-                    float gen_p = (float)random.NextDouble();
-                    if (gen_p < p)
-                    {
-                        //print("creating food");
-                        Vector3 offset = new Vector3(UnityEngine.Random.Range(-2f, 2f), 0, UnityEngine.Random.Range(-2f, 2f));
-                        CreateFoodLocal(locs[i] + offset);
+                        float p = probabilities[count - 1];
+                        var random = new System.Random();
+                        float gen_p = (float)random.NextDouble();
+                        if (gen_p < p)
+                        {
+                            //print("creating food");
+                            Vector3 offset = new Vector3(UnityEngine.Random.Range(-2f, 2f), 0, UnityEngine.Random.Range(-2f, 2f));
+                            CreateFoodLocal(locs[i] + offset);
+                        }
                     }
                 }
+
+
+
             }
-
-            
-
-
             timeElapsed = timeNeeded + timeElapsed;
 
         }
