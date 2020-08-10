@@ -1,25 +1,29 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.MLAgents;
+using System;
 
 public class FoodCollectorSettings : MonoBehaviour
 {
-    [HideInInspector]
     public GameObject[] agents;
-    [HideInInspector]
     public FoodCollectorArea[] listArea;
+
+    public int svoDegrees;
+
+    public Agent[] rewardAgents;
 
     public Text scoreText;
 
-    public int agent0return;
-    public int agent1return;
+
+    public int[] agentReturns;
 
 
-    public int agent0laser;
-    public int agent1laser;
+    public int[] agentLasers;
 
     public float equality;
 
+
+    public int[] agentAddRewards;
 
 
     StatsRecorder m_Recorder;
@@ -41,10 +45,9 @@ public class FoodCollectorSettings : MonoBehaviour
             fa.ResetFoodArea(agents);
         }
 
-        agent0return = 0;
-        agent1return = 0;
-        agent0laser = 0;
-        agent1laser = 0;
+        agentReturns = new int[rewardAgents.Length];
+        agentLasers = new int[rewardAgents.Length];
+        agentAddRewards = new int[rewardAgents.Length];
         equality = 0;
 
     }
@@ -65,16 +68,36 @@ public class FoodCollectorSettings : MonoBehaviour
         // need to send every Update() call.
         if ((Time.frameCount % 100)== 0)
         {
-            m_Recorder.Add("CollectiveReturn", agent0return + agent1return);
-            m_Recorder.Add("Agent0Return", agent0return);
-            m_Recorder.Add("Agent1Return", agent1return);
-            m_Recorder.Add("Agent0Laser", agent0laser);
-            m_Recorder.Add("Agent1Laser", agent1laser);
-            m_Recorder.Add("TotalLaser", agent0laser + agent1laser);
+            int collectiveReturn = 0;
+            int collectiveLaser = 0;
 
-            if (agent0return + agent1return > 0)
+            for(int i = 0; i < agentReturns.Length; i++)
             {
-                equality = 1 - (agent0return - agent1return) / (2 * agent0return + agent1return);
+                collectiveReturn += agentReturns[i];
+                m_Recorder.Add("Agent" + i.ToString() + "Return", agentReturns[i]);
+            }
+
+
+            for (int i = 0; i < agentLasers.Length; i++)
+            {
+                collectiveLaser += agentLasers[i];
+                m_Recorder.Add("Agent" + i.ToString() + "Laser", agentLasers[i]);
+            }
+
+            m_Recorder.Add("CollectiveReturn", collectiveReturn);
+            m_Recorder.Add("TotalLaser", collectiveLaser);
+
+            if (collectiveReturn > 0)
+            {
+                int sumDifferences = 0;
+                for(int i = 0; i < agentReturns.Length; i++)
+                {
+                    for (int j = 0; j < agentReturns.Length; j++)
+                    {
+                        sumDifferences += Math.Abs(agentReturns[i] - agentReturns[j]);
+                    }
+                }
+                equality = 1 - (sumDifferences) / (2 * agentReturns.Length * collectiveReturn );
             }
             else
             {
@@ -82,5 +105,23 @@ public class FoodCollectorSettings : MonoBehaviour
             }
             m_Recorder.Add("Equality", equality);
         }
+    }
+
+    public void FixedUpdate()
+    {
+        int sum = 0;
+        foreach(int i in agentAddRewards)
+        {
+            sum += i;
+        }
+
+        for(int i = 0; i < rewardAgents.Length; i++)
+        {
+            var rads = Math.PI * svoDegrees / 180;
+            var oths = (sum - agentAddRewards[i]) / (rewardAgents.Length - 1);
+            float rewd = (float)(Math.Cos(rads) * agentAddRewards[i] + Math.Sin(rads) * oths);
+            rewardAgents[i].AddReward(rewd);
+        }
+        agentAddRewards = new int[agentAddRewards.Length];
     }
 }

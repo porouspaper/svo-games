@@ -129,8 +129,7 @@ public class FoodCollectorAgent : Agent
             {
                 if (hit.collider.gameObject.CompareTag("agent"))
                 {
-                    AddReward(-1);
-                    logReward(-1);
+                    AddRewardTemp(-1);
                     hit.collider.gameObject.GetComponent<FoodCollectorAgent>().Hit();
                 }
             }
@@ -143,31 +142,17 @@ public class FoodCollectorAgent : Agent
 
     void Hit()
     {
-        AddReward(-50);
-        logReward(-50);
+        AddRewardTemp(-50);
     }
 
     void logLaser()
     {
-        if(agent_number == 0)
-        {
-            m_FoodCollecterSettings.agent0laser += 1;
-        }
-        else if(agent_number == 1){
-            m_FoodCollecterSettings.agent1laser += 1;
-        }
+        m_FoodCollecterSettings.agentLasers[agent_number] += 1;
     }
 
     void logReward(int val)
     {
-        if (agent_number == 0)
-        {
-            m_FoodCollecterSettings.agent0return += val;
-        }
-        else if (agent_number == 1)
-        {
-            m_FoodCollecterSettings.agent1return += val;
-        }
+        m_FoodCollecterSettings.agentReturns[agent_number] += val;
     }
 
 
@@ -215,8 +200,7 @@ public class FoodCollectorAgent : Agent
         if (collision.gameObject.CompareTag("food"))
         {
             collision.gameObject.GetComponent<FoodLogic>().OnEaten();
-            AddReward(1f);
-            logReward(1);
+            AddRewardTemp(1);
         }
     }
 
@@ -235,5 +219,11 @@ public class FoodCollectorAgent : Agent
     {
         SetLaserLengths();
         SetAgentScale();
+    }
+
+    public void AddRewardTemp(int f)
+    {
+        m_FoodCollecterSettings.agentAddRewards[agent_number] += f;
+        logReward(f);
     }
 }
