@@ -8,11 +8,13 @@ public class FoodCollectorAgent : Agent
     public GameObject area;
     FoodCollectorArea m_MyArea;
     bool m_Shoot;
+    bool m_Frozen;
     Rigidbody m_AgentRb;
     float m_LaserLength;
     // Speed of agent rotation.
     public float turnSpeed = 300;
     public int agent_number;
+    public float m_FrozenTime;
 
     // Speed of agent movement.
     public float moveSpeed = 2;
@@ -57,8 +59,16 @@ public class FoodCollectorAgent : Agent
     {
         m_Shoot = false;
 
+        if (Time.time > m_FrozenTime + 4f && m_Frozen)
+        {
+            Unfreeze();
+        }
+
         var dirToGo = Vector3.zero;
         var rotateDir = Vector3.zero;
+
+        if (!m_Frozen)
+        {
 
             var shootCommand = false;
             var forwardAxis = (int)act[0];
@@ -109,7 +119,7 @@ public class FoodCollectorAgent : Agent
             }
             m_AgentRb.AddForce(dirToGo * moveSpeed, ForceMode.VelocityChange);
             transform.Rotate(rotateDir, Time.fixedDeltaTime * turnSpeed);
-        
+        }
 
         if (m_AgentRb.velocity.sqrMagnitude > 25f) // slow it down
         {
@@ -141,7 +151,8 @@ public class FoodCollectorAgent : Agent
 
     void Hit()
     {
-        AddRewardTemp(-50);
+        Freeze();
+        //AddRewardTemp(-50);
     }
 
     void logLaser()
@@ -163,6 +174,21 @@ public class FoodCollectorAgent : Agent
     public override void OnActionReceived(float[] vectorAction)
     {
         MoveAgent(vectorAction);
+    }
+
+    void Freeze()
+    {
+        gameObject.tag = "frozenAgent";
+        m_Frozen = true;
+        m_FrozenTime = Time.time;
+        gameObject.GetComponentInChildren<Renderer>().material = frozenMaterial;
+    }
+
+    void Unfreeze()
+    {
+        m_Frozen = false;
+        gameObject.tag = "agent";
+        gameObject.GetComponentInChildren<Renderer>().material = normalMaterial;
     }
 
     public override void Heuristic(float[] actionsOut)

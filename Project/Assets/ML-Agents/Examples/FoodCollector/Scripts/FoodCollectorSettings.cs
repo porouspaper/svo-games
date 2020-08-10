@@ -54,6 +54,7 @@ public class FoodCollectorSettings : MonoBehaviour
         agentAddRewards = new int[rewardAgents.Length];
         applesEaten = new int[rewardAgents.Length];
         equality = 0;
+        
 
     }
 
@@ -110,13 +111,14 @@ public class FoodCollectorSettings : MonoBehaviour
                         sumDifferences += Math.Abs(agentReturns[i] - agentReturns[j]);
                     }
                 }
-                equality = 1 - (sumDifferences) / (2 * agentReturns.Length * collectiveReturn );
+                equality = 1 - (sumDifferences / (2 * agentReturns.Length * collectiveReturn ));
             }
             else
             {
                 equality = 1;
             }
             m_Recorder.Add("Equality", equality);
+            m_Recorder.Add("TotalApples", totalApples);
         }
     }
 

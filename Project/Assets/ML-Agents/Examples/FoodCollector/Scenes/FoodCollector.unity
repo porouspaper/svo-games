@@ -791,7 +791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agents: []
   listArea: []
-  svoDegrees: 315
+  svoDegrees: 0
   rewardAgents:
   - {fileID: 1142607727}
   - {fileID: 1142607726}
