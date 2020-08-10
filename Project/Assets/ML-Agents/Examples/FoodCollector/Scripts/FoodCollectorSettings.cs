@@ -22,6 +22,10 @@ public class FoodCollectorSettings : MonoBehaviour
 
     public float equality;
 
+    public int[] applesEaten;
+    public int totalApples;
+
+
 
     public int[] agentAddRewards;
 
@@ -48,6 +52,7 @@ public class FoodCollectorSettings : MonoBehaviour
         agentReturns = new int[rewardAgents.Length];
         agentLasers = new int[rewardAgents.Length];
         agentAddRewards = new int[rewardAgents.Length];
+        applesEaten = new int[rewardAgents.Length];
         equality = 0;
 
     }
@@ -66,12 +71,13 @@ public class FoodCollectorSettings : MonoBehaviour
         // Send stats via SideChannel so that they'll appear in TensorBoard.
         // These values get averaged every summary_frequency steps, so we don't
         // need to send every Update() call.
-        if ((Time.frameCount % 100)== 0)
+        if ((Time.frameCount % 100) == 0)
         {
             int collectiveReturn = 0;
             int collectiveLaser = 0;
+            int collectiveEaten = 0;
 
-            for(int i = 0; i < agentReturns.Length; i++)
+            for (int i = 0; i < agentReturns.Length; i++)
             {
                 collectiveReturn += agentReturns[i];
                 m_Recorder.Add("Agent" + i.ToString() + "Return", agentReturns[i]);
@@ -84,8 +90,15 @@ public class FoodCollectorSettings : MonoBehaviour
                 m_Recorder.Add("Agent" + i.ToString() + "Laser", agentLasers[i]);
             }
 
+            for (int i = 0; i < applesEaten.Length; i++)
+            {
+                collectiveEaten += applesEaten[i];
+                m_Recorder.Add("Agent" + i.ToString() + "AppleEaten", applesEaten[i]);
+            }
+        
             m_Recorder.Add("CollectiveReturn", collectiveReturn);
             m_Recorder.Add("TotalLaser", collectiveLaser);
+            m_Recorder.Add("TotalEaten", collectiveEaten);
 
             if (collectiveReturn > 0)
             {

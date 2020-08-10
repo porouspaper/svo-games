@@ -12,6 +12,8 @@ public class FoodCollectorArea : MonoBehaviour
     public float[] probabilities;
     private float timeElapsed = 0;
     public float timeNeeded = 1;
+    public FoodCollectorSettings m_FoodCollecterSettings;
+
 
     void CreateFood(int num, GameObject type)
     {
@@ -29,6 +31,7 @@ public class FoodCollectorArea : MonoBehaviour
         GameObject f = Instantiate(food, loc,
         Quaternion.Euler(new Vector3(0f, UnityEngine.Random.Range(0f, 360f), 90f)));
         f.GetComponent<FoodLogic>().myArea = this;
+        m_FoodCollecterSettings.totalApples += 1;
     }
 
     public void ResetFoodArea(GameObject[] agents)
@@ -45,6 +48,7 @@ public class FoodCollectorArea : MonoBehaviour
         }
 
         CreateFood(numFood, food);
+        m_FoodCollecterSettings.totalApples = numFood;
 
     }
 

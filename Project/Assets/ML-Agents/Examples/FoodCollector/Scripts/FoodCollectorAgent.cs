@@ -7,7 +7,6 @@ public class FoodCollectorAgent : Agent
     FoodCollectorSettings m_FoodCollecterSettings;
     public GameObject area;
     FoodCollectorArea m_MyArea;
-    bool m_Frozen;
     bool m_Shoot;
     Rigidbody m_AgentRb;
     float m_LaserLength;
@@ -155,6 +154,11 @@ public class FoodCollectorAgent : Agent
         m_FoodCollecterSettings.agentReturns[agent_number] += val;
     }
 
+    void logAppleEaten()
+    {
+        m_FoodCollecterSettings.applesEaten[agent_number] += 1;
+        m_FoodCollecterSettings.totalApples -= 1;
+    }
 
     public override void OnActionReceived(float[] vectorAction)
     {
@@ -201,6 +205,7 @@ public class FoodCollectorAgent : Agent
         {
             collision.gameObject.GetComponent<FoodLogic>().OnEaten();
             AddRewardTemp(1);
+            logAppleEaten();
         }
     }
 

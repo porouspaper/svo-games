@@ -624,6 +624,11 @@ PrefabInstance:
       propertyPath: probabilities.Array.data[2]
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 114181230191376748, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_FoodCollecterSettings
+      value: 
+      objectReference: {fileID: 1574236048}
     - target: {fileID: 114276061479012222, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: m_DetectableTags.Array.size
@@ -786,7 +791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agents: []
   listArea: []
-  svoDegrees: 315
+  svoDegrees: 45
   rewardAgents:
   - {fileID: 1142607727}
   - {fileID: 1142607726}
@@ -794,6 +799,8 @@ MonoBehaviour:
   agentReturns: 
   agentLasers: 
   equality: 0
+  applesEaten: 
+  totalApples: 0
   agentAddRewards: 
 --- !u!4 &1574236049
 Transform:
