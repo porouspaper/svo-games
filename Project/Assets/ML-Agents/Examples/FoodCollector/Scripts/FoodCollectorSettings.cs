@@ -138,5 +138,10 @@ public class FoodCollectorSettings : MonoBehaviour
             rewardAgents[i].AddReward(rewd);
         }
         agentAddRewards = new int[agentAddRewards.Length];
+
+        if(Academy.Instance.StepCount > 200000)
+        {
+            EnvironmentReset();
+        }
     }
 }
