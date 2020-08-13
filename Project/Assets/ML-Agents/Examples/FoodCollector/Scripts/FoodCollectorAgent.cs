@@ -257,4 +257,6 @@ public class FoodCollectorAgent : Agent
         m_FoodCollecterSettings.agentAddRewards[agent_number] += f;
         logReward(f);
     }
+
+     
 }
