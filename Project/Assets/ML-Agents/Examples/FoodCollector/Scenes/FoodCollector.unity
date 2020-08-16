@@ -634,15 +634,20 @@ PrefabInstance:
       propertyPath: m_DetectableTags.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114374774605792098, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 114443152683847924, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: m_DetectableTags.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114443152683847924, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: m_DetectableTags.Array.data[3]
-      value: 
+      value: frozenAgent
       objectReference: {fileID: 0}
     - target: {fileID: 114443152683847924, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
@@ -669,6 +674,11 @@ PrefabInstance:
       propertyPath: rayHitColor.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114522573150607728, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 114644889237473510, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: m_DetectableTags.Array.size
@@ -677,7 +687,7 @@ PrefabInstance:
     - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: m_DetectableTags.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
@@ -729,10 +739,25 @@ PrefabInstance:
       propertyPath: m_ObservationStacks
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_DetectableTags.Array.data[3]
+      value: frozenAgent
+      objectReference: {fileID: 0}
     - target: {fileID: 114986980423924774, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: m_DetectableTags.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566153762087993134, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046698241912154485, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_Model
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38400a68c4ea54b52998e34ee238d1a7, type: 3}
@@ -751,6 +776,30 @@ MonoBehaviour:
 --- !u!114 &1142607727 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114176228333253036, guid: 38400a68c4ea54b52998e34ee238d1a7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1142607725}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c66e6845309d241c78a6d77ee2567928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1142607728 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8550430260690980236, guid: 38400a68c4ea54b52998e34ee238d1a7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1142607725}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c66e6845309d241c78a6d77ee2567928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1142607729 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 84576180754796151, guid: 38400a68c4ea54b52998e34ee238d1a7,
     type: 3}
   m_PrefabInstance: {fileID: 1142607725}
   m_PrefabAsset: {fileID: 0}
@@ -791,10 +840,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agents: []
   listArea: []
-  svoDegrees: 0
+  svoDegrees: 90
   rewardAgents:
   - {fileID: 1142607727}
   - {fileID: 1142607726}
+  - {fileID: 1142607729}
+  - {fileID: 1142607728}
   scoreText: {fileID: 1086444496}
   agentReturns: 
   agentLasers: 
