@@ -916,7 +916,7 @@ MonoBehaviour:
     VectorActionSize: 03000000030000000300000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
-  m_Model: {fileID: 5022602860645237092, guid: fbd51e0d80fd242d5a3e826cdd534fba, type: 3}
+  m_Model: {fileID: 0}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: FoodCollector
@@ -938,7 +938,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
+  MaxStep: 20000
   area: {fileID: 1819751139121548}
   turnSpeed: 300
   agent_number: 0
@@ -1092,7 +1092,7 @@ MonoBehaviour:
     VectorActionSize: 03000000030000000300000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
-  m_Model: {fileID: 5022602860645237092, guid: fbd51e0d80fd242d5a3e826cdd534fba, type: 3}
+  m_Model: {fileID: 0}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: FoodCollector
@@ -1114,7 +1114,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
+  MaxStep: 20000
   area: {fileID: 1819751139121548}
   turnSpeed: 300
   agent_number: 1
@@ -2278,7 +2278,7 @@ MonoBehaviour:
     VectorActionSize: 03000000030000000300000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
-  m_Model: {fileID: 5022602860645237092, guid: fbd51e0d80fd242d5a3e826cdd534fba, type: 3}
+  m_Model: {fileID: 0}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: FoodCollector
@@ -2300,7 +2300,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
+  MaxStep: 20000
   area: {fileID: 1819751139121548}
   turnSpeed: 300
   agent_number: 3
@@ -3431,7 +3431,7 @@ MonoBehaviour:
     VectorActionSize: 03000000030000000300000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
-  m_Model: {fileID: 5022602860645237092, guid: fbd51e0d80fd242d5a3e826cdd534fba, type: 3}
+  m_Model: {fileID: 0}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: FoodCollector
@@ -3453,7 +3453,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
+  MaxStep: 20000
   area: {fileID: 1819751139121548}
   turnSpeed: 300
   agent_number: 2
