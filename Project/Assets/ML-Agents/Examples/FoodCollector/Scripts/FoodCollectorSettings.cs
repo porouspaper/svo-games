@@ -54,7 +54,7 @@ public class FoodCollectorSettings : MonoBehaviour
         agentAddRewards = new int[rewardAgents.Length];
         applesEaten = new int[rewardAgents.Length];
         equality = 0;
-        
+
 
     }
 
@@ -96,7 +96,7 @@ public class FoodCollectorSettings : MonoBehaviour
                 collectiveEaten += applesEaten[i];
                 m_Recorder.Add("Agent" + i.ToString() + "AppleEaten", applesEaten[i]);
             }
-        
+
             m_Recorder.Add("CollectiveReturn", collectiveReturn);
             m_Recorder.Add("TotalLaser", collectiveLaser);
             m_Recorder.Add("TotalEaten", collectiveEaten);
@@ -139,9 +139,9 @@ public class FoodCollectorSettings : MonoBehaviour
         }
         agentAddRewards = new int[agentAddRewards.Length];
 
-        if(Academy.Instance.StepCount > 20000)
+        /*if(Academy.Instance.StepCount % 20000 == 19999)
         {
             EnvironmentReset();
-        }
+        }*/
     }
 }
