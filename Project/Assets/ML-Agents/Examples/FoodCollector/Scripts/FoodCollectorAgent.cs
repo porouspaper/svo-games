@@ -1,10 +1,13 @@
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
+using System;
+
 
 public class FoodCollectorAgent : Agent
 {
     FoodCollectorSettings m_FoodCollecterSettings;
+    public Agent[] allAgents;
     public GameObject area;
     FoodCollectorArea m_MyArea;
     bool m_Shoot;
@@ -217,10 +220,10 @@ public class FoodCollectorAgent : Agent
         m_Shoot = false;
         m_AgentRb.velocity = Vector3.zero;
         myLaser.transform.localScale = new Vector3(0f, 0f, 0f);
-        transform.position = new Vector3(Random.Range(-m_MyArea.range, m_MyArea.range),
-            2f, Random.Range(-m_MyArea.range, m_MyArea.range))
+        transform.position = new Vector3(UnityEngine.Random.Range(-m_MyArea.range, m_MyArea.range),
+            2f, UnityEngine.Random.Range(-m_MyArea.range, m_MyArea.range))
             + area.transform.position;
-        transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0, 360)));
+        transform.rotation = Quaternion.Euler(new Vector3(0f, UnityEngine.Random.Range(0, 360)));
 
         SetResetParameters();
     }
@@ -254,7 +257,21 @@ public class FoodCollectorAgent : Agent
 
     public void AddRewardTemp(int f)
     {
-        m_FoodCollecterSettings.agentAddRewards[agent_number] += f;
+        var svoDegrees = m_FoodCollecterSettings.svoDegrees;
+        double rads = Math.PI * svoDegrees / 180;
+        var weight = 1 / (allAgents.Length - 1);
+
+        for(int i = 0; i < allAgents.Length; i++)
+        {
+            if (i != agent_number)
+            {
+                Agent a = allAgents[i];
+                a.AddReward((float)(weight * Math.Sin(rads) * f));
+            }
+        }
+        
+        AddReward((float)(Math.Cos(rads) * f));
+
         logReward(f);
     }
 
