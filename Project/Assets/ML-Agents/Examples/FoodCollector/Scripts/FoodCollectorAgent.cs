@@ -275,5 +275,9 @@ public class FoodCollectorAgent : Agent
         logReward(f);
     }
 
-     
+    public void FixedUpdate()
+    {
+        AddReward(-0.0001f);
+    }
+
 }
