@@ -17,11 +17,15 @@ public class GoalLogic : MonoBehaviour
         if (isCooperative)
         {
             gameObject.GetComponentInChildren<Renderer>().material = cooperativeMaterial;
+            gameObject.tag = "coopGoal";
         }
         else
         {
             gameObject.GetComponentInChildren<Renderer>().material = selfishMaterial;
+            gameObject.tag = "selfGoal";
         }
+
+        
     }
 
     // cooks food

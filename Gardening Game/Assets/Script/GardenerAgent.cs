@@ -33,15 +33,20 @@ public class GardenerAgent : Agent
         {
             case 0:
                 gameObject.GetComponentInChildren<Renderer>().material = ingredient1;
+                gameObject.tag = "Agent1";
                 break;
             case 1:
                 gameObject.GetComponentInChildren<Renderer>().material = ingredient2;
+                gameObject.tag = "Agent2";
                 break;
             case 2:
                 gameObject.GetComponentInChildren<Renderer>().material = ingredient3;
+                gameObject.tag = "Agent3";
                 break;
             case 3:
                 gameObject.GetComponentInChildren<Renderer>().material = ingredient4;
+                gameObject.tag = "Agent4";
+
                 break;
         }
 

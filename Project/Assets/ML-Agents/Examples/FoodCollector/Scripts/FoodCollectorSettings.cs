@@ -27,7 +27,6 @@ public class FoodCollectorSettings : MonoBehaviour
 
 
 
-    public int[] agentAddRewards;
 
 
     StatsRecorder m_Recorder;
@@ -51,7 +50,6 @@ public class FoodCollectorSettings : MonoBehaviour
 
         agentReturns = new int[rewardAgents.Length];
         agentLasers = new int[rewardAgents.Length];
-        agentAddRewards = new int[rewardAgents.Length];
         applesEaten = new int[rewardAgents.Length];
         equality = 0;
 
@@ -122,26 +120,4 @@ public class FoodCollectorSettings : MonoBehaviour
         }
     }
 
-    public void FixedUpdate()
-    {
-        int sum = 0;
-        foreach(int i in agentAddRewards)
-        {
-            sum += i;
-        }
-
-        for(int i = 0; i < rewardAgents.Length; i++)
-        {
-            var rads = Math.PI * svoDegrees / 180;
-            var oths = (sum - agentAddRewards[i]) / (rewardAgents.Length - 1);
-            float rewd = (float)(Math.Cos(rads) * agentAddRewards[i] + Math.Sin(rads) * oths);
-            rewardAgents[i].AddReward(rewd);
-        }
-        agentAddRewards = new int[agentAddRewards.Length];
-
-        /*if(Academy.Instance.StepCount % 20000 == 19999)
-        {
-            EnvironmentReset();
-        }*/
-    }
 }

@@ -5,8 +5,7 @@ using UnityEngine;
 public class IngredientType : MonoBehaviour
 {
     public int type;
-    public bool respawn;
-    public GameObject ingredient;
+    public bool respawn = true;
     public Material ingredient1;
     public Material ingredient2;
     public Material ingredient3;
