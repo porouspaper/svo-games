@@ -19,15 +19,19 @@ public class IngredientType : MonoBehaviour
         {
             case 0:
                 gameObject.GetComponentInChildren<Renderer>().material = ingredient1;
+                gameObject.tag = "ingredient1";
                 break;
             case 1:
                 gameObject.GetComponentInChildren<Renderer>().material = ingredient2;
+                gameObject.tag = "ingredient2";
                 break;
             case 2:
                 gameObject.GetComponentInChildren<Renderer>().material = ingredient3;
+                gameObject.tag = "ingredient3";
                 break;
             case 3:
                 gameObject.GetComponentInChildren<Renderer>().material = ingredient4;
+                gameObject.tag = "ingredient4";
                 break;
         }
     }

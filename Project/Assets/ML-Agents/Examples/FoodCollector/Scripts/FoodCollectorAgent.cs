@@ -141,7 +141,7 @@ public class FoodCollectorAgent : Agent
             {
                 if (hit.collider.gameObject.CompareTag("agent"))
                 {
-                    AddRewardTemp(-1);
+                    AddReward(1);
                     hit.collider.gameObject.GetComponent<FoodCollectorAgent>().Hit();
                 }
             }
@@ -233,7 +233,7 @@ public class FoodCollectorAgent : Agent
         if (collision.gameObject.CompareTag("food"))
         {
             collision.gameObject.GetComponent<FoodLogic>().OnEaten();
-            AddRewardTemp(1);
+            AddReward(1);
             logAppleEaten();
         }
     }
