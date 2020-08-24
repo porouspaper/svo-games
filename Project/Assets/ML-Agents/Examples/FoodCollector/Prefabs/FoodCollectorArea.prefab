@@ -414,7 +414,7 @@ MonoBehaviour:
     VectorActionSize: 03000000030000000300000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
-  m_Model: {fileID: 5022602860645237092, guid: 87ef85ad38510415fbb106636a3c4489, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: b1b3086da31584faab4d25dd59cb2adc, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 2
   m_BehaviorName: FoodCollector

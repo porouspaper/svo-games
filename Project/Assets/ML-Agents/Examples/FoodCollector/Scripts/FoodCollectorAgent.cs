@@ -157,7 +157,7 @@ public class FoodCollectorAgent : Agent
 
     void Hit()
     {
-        //Freeze();
+        Freeze();
         //AddRewardTemp(-50);
     }
 
