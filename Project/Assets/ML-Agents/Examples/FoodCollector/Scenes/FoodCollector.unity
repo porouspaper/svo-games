@@ -367,6 +367,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &651593571 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7316817689420812191, guid: 38400a68c4ea54b52998e34ee238d1a7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1142607725}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c66e6845309d241c78a6d77ee2567928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &916917435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -408,6 +420,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5889392e3f05b448a8a06c5def6c2dec, type: 3}
+--- !u!114 &928696935 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6848174254488367636, guid: 38400a68c4ea54b52998e34ee238d1a7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1142607725}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c66e6845309d241c78a6d77ee2567928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1009000883
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,17 +637,17 @@ PrefabInstance:
         type: 3}
       propertyPath: allAgents.Array.data[1]
       value: 
-      objectReference: {fileID: 1142607726}
+      objectReference: {fileID: 0}
     - target: {fileID: 84576180754796151, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: allAgents.Array.data[2]
       value: 
-      objectReference: {fileID: 1142607729}
+      objectReference: {fileID: 0}
     - target: {fileID: 84576180754796151, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: allAgents.Array.data[3]
       value: 
-      objectReference: {fileID: 1142607728}
+      objectReference: {fileID: 0}
     - target: {fileID: 114176228333253036, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: allAgents.Array.size
@@ -638,17 +662,17 @@ PrefabInstance:
         type: 3}
       propertyPath: allAgents.Array.data[1]
       value: 
-      objectReference: {fileID: 1142607726}
+      objectReference: {fileID: 0}
     - target: {fileID: 114176228333253036, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: allAgents.Array.data[2]
       value: 
-      objectReference: {fileID: 1142607729}
+      objectReference: {fileID: 0}
     - target: {fileID: 114176228333253036, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: allAgents.Array.data[3]
       value: 
-      objectReference: {fileID: 1142607728}
+      objectReference: {fileID: 0}
     - target: {fileID: 114181230191376748, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: probabilities.Array.size
@@ -770,17 +794,17 @@ PrefabInstance:
         type: 3}
       propertyPath: allAgents.Array.data[1]
       value: 
-      objectReference: {fileID: 1142607726}
+      objectReference: {fileID: 0}
     - target: {fileID: 114711827726849508, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: allAgents.Array.data[2]
       value: 
-      objectReference: {fileID: 1142607729}
+      objectReference: {fileID: 0}
     - target: {fileID: 114711827726849508, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: allAgents.Array.data[3]
       value: 
-      objectReference: {fileID: 1142607728}
+      objectReference: {fileID: 0}
     - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: m_DetectableTags.Array.size
@@ -876,17 +900,17 @@ PrefabInstance:
         type: 3}
       propertyPath: allAgents.Array.data[1]
       value: 
-      objectReference: {fileID: 1142607726}
+      objectReference: {fileID: 0}
     - target: {fileID: 8550430260690980236, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: allAgents.Array.data[2]
       value: 
-      objectReference: {fileID: 1142607729}
+      objectReference: {fileID: 0}
     - target: {fileID: 8550430260690980236, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: allAgents.Array.data[3]
       value: 
-      objectReference: {fileID: 1142607728}
+      objectReference: {fileID: 0}
     - target: {fileID: 9046698241912154485, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: m_Model
@@ -900,18 +924,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38400a68c4ea54b52998e34ee238d1a7, type: 3}
---- !u!114 &1142607726 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114711827726849508, guid: 38400a68c4ea54b52998e34ee238d1a7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1142607725}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c66e6845309d241c78a6d77ee2567928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1142607727 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114176228333253036, guid: 38400a68c4ea54b52998e34ee238d1a7,
@@ -924,21 +936,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c66e6845309d241c78a6d77ee2567928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1142607728 stripped
+--- !u!114 &1544518131 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8550430260690980236, guid: 38400a68c4ea54b52998e34ee238d1a7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1142607725}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c66e6845309d241c78a6d77ee2567928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1142607729 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 84576180754796151, guid: 38400a68c4ea54b52998e34ee238d1a7,
+  m_CorrespondingSourceObject: {fileID: 4642016547876079933, guid: 38400a68c4ea54b52998e34ee238d1a7,
     type: 3}
   m_PrefabInstance: {fileID: 1142607725}
   m_PrefabAsset: {fileID: 0}
@@ -979,19 +979,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agents: []
   listArea: []
-  svoDegrees: 0
+  svoDegrees: 45
   rewardAgents:
   - {fileID: 1142607727}
-  - {fileID: 1142607726}
-  - {fileID: 1142607729}
-  - {fileID: 1142607728}
+  - {fileID: 928696935}
+  - {fileID: 1544518131}
+  - {fileID: 651593571}
   scoreText: {fileID: 1086444496}
   agentReturns: 
   agentLasers: 
   equality: 0
   applesEaten: 
   totalApples: 0
-  agentAddRewards: 
 --- !u!4 &1574236049
 Transform:
   m_ObjectHideFlags: 0
