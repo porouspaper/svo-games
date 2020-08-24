@@ -30,6 +30,7 @@ public class FoodCollectorAgent : Agent
 
     EnvironmentParameters m_ResetParams;
 
+
     public override void Initialize()
     {
         m_AgentRb = GetComponent<Rigidbody>();
@@ -37,6 +38,8 @@ public class FoodCollectorAgent : Agent
         m_FoodCollecterSettings = FindObjectOfType<FoodCollectorSettings>();
         m_ResetParams = Academy.Instance.EnvironmentParameters;
         SetResetParameters();
+        Physics.IgnoreLayerCollision(0, 8);
+
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -141,7 +144,7 @@ public class FoodCollectorAgent : Agent
             {
                 if (hit.collider.gameObject.CompareTag("agent"))
                 {
-                    AddReward(1);
+                    AddReward(-1);
                     hit.collider.gameObject.GetComponent<FoodCollectorAgent>().Hit();
                 }
             }
@@ -154,7 +157,7 @@ public class FoodCollectorAgent : Agent
 
     void Hit()
     {
-        Freeze();
+        //Freeze();
         //AddRewardTemp(-50);
     }
 
