@@ -467,8 +467,8 @@ MonoBehaviour:
   - wall
   - agent
   - frozenAgent
-  m_RaysPerDirection: 50
-  m_MaxRayDegrees: 180
+  m_RaysPerDirection: 3
+  m_MaxRayDegrees: 30
   m_SphereCastRadius: 0.5
   m_RayLength: 100
   m_RayLayerMask:
