@@ -169,7 +169,7 @@ public class FoodCollectorArea : MonoBehaviour
                         }
 
                         count = Math.Min(count, myLen);
-                        /*print("count " + count);
+                        print("count " + count);
                         if (count == 1)
                         {
                             foods[i].layer = 8;
@@ -180,7 +180,7 @@ public class FoodCollectorArea : MonoBehaviour
                             foods[i].layer = 0;
                             print("set collision possible");
 
-                        }*/
+                        }
                         float p = probabilities[count - 1];
                         var random = new System.Random();
                         float gen_p = (float)random.NextDouble();
