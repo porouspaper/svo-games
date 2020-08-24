@@ -11,9 +11,8 @@ public class FoodCollectorArea : MonoBehaviour
     public float radius;
     public float[] probabilities;
     private float timeElapsed = 0;
-    public float timeNeeded = 1;
+    public float timeNeeded = 2;
     public FoodCollectorSettings m_FoodCollecterSettings;
-
 
     void CreateFood(int num, GameObject type)
     {
@@ -53,13 +52,45 @@ public class FoodCollectorArea : MonoBehaviour
     }
 
 
-    public static int CompareLoc(Vector3 v1, Vector3 v2)
+    public static int CompareLocX(Vector3 v1, Vector3 v2)
     {
-        if(v1.x > v2.x)
+        if (v1.x > v2.x)
         {
             return 1;
         }
-        else if(v1.x < v2.x)
+        else if (v1.x < v2.x)
+        {
+            return -1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    public static int CompareFoodX(GameObject v1, GameObject v2)
+    {
+        if (v1.transform.position.x > v2.transform.position.x)
+        {
+            return 1;
+        }
+        else if (v1.transform.position.x < v2.transform.position.x)
+        {
+            return -1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    public static int CompareLocY(Vector3 v1, Vector3 v2)
+    {
+        if (v1.z > v2.z)
+        {
+            return 1;
+        }
+        else if (v1.z < v2.z)
         {
             return -1;
         }
@@ -71,44 +102,85 @@ public class FoodCollectorArea : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //print("updating");
+
         if (Time.time > timeElapsed)
         {
-            //print("updating");
             GameObject[] foods = GameObject.FindGameObjectsWithTag("food");
             if (foods.Length < 1000)
             {
 
                 Func<GameObject, Vector3> getLoc = (x) => x.transform.position;
-                Vector3[] locs = new Vector3[foods.Length];
+
+                Vector3[] locsX = new Vector3[foods.Length];
+                Vector3[] locsY = new Vector3[foods.Length];
+
                 for (int i = 0; i < foods.Length; i++)
                 {
-                    locs[i] = getLoc(foods[i]);
+                    locsX[i] = getLoc(foods[i]);
+                    locsY[i] = getLoc(foods[i]);
                 }
 
-                Array.Sort(locs, CompareLoc);
+                Array.Sort(locsX, CompareLocX);
+                Array.Sort(locsY, CompareLocY);
+                Array.Sort(foods, CompareFoodX);
 
                 Vector3 prev = Vector3.zero;
-                for (int i = 0; i < locs.Length; i++)
+                for (int i = 0; i < locsX.Length; i++)
                 {
-                    if (i > 0 && Vector3.Distance(prev, locs[i]) > radius)
+                    int count = 1;
+                    int myLen = probabilities.Length;
+
+                    //print(foods[i].layer);
+
+                    if (locsX.Length == 1 || i > 0 && Vector3.Distance(prev, locsX[i]) > radius)
                     {
-                        prev = locs[i];
-                        int myLen = probabilities.Length;
-                        int count = 1;
+                        prev = locsX[i];
                         for (int j = i - myLen; j <= i + myLen; j++)
                         {
-                            if (j >= 0 && j < locs.Length)
+                            if (j != i)
                             {
-                                if (Vector3.Distance(locs[i], locs[j]) < radius)
+                                if (j >= 0 && j < locsX.Length)
                                 {
-                                    //print("Distance good");
-                                    count += 1;
+                                    if (Vector3.Distance(locsX[i], locsX[j]) < radius)
+                                    {
+                                        print("Distance good");
+                                        count += 1;
+                                    }
+                                }
+                            }
+                        }
+
+                        int translate_i = Array.IndexOf(locsY, locsX[i]);
+
+                        for (int j = translate_i - myLen; j <= translate_i + myLen; j++)
+                        {
+                            if (j != translate_i)
+                            {
+                                if (j >= 0 && j < locsY.Length)
+                                {
+                                    if (Vector3.Distance(locsY[translate_i], locsY[j]) < radius)
+                                    {
+                                        print("Distance good");
+                                        count += 1;
+                                    }
                                 }
                             }
                         }
 
                         count = Math.Min(count, myLen);
+                        /*print("count " + count);
+                        if (count == 1)
+                        {
+                            foods[i].layer = 8;
+                            print("set layer invisible");
+                        }
+                        else
+                        {
+                            foods[i].layer = 0;
+                            print("set collision possible");
 
+                        }*/
                         float p = probabilities[count - 1];
                         var random = new System.Random();
                         float gen_p = (float)random.NextDouble();
@@ -116,17 +188,20 @@ public class FoodCollectorArea : MonoBehaviour
                         {
                             //print("creating food");
                             Vector3 offset = new Vector3(UnityEngine.Random.Range(-2f, 2f), 0, UnityEngine.Random.Range(-2f, 2f));
-                            CreateFoodLocal(locs[i] + offset);
+                            CreateFoodLocal(locsX[i] + offset);
                         }
+
                     }
+
                 }
 
 
-
             }
+
             timeElapsed = timeNeeded + timeElapsed;
 
         }
+
     }
 
 }

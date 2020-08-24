@@ -939,6 +939,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 20000
+  allAgents: []
   area: {fileID: 1819751139121548}
   turnSpeed: 300
   agent_number: 0
@@ -968,10 +969,10 @@ MonoBehaviour:
   - agent
   - wall
   - frozenAgent
-  m_RaysPerDirection: 3
-  m_MaxRayDegrees: 70
+  m_RaysPerDirection: 50
+  m_MaxRayDegrees: 180
   m_SphereCastRadius: 0.5
-  m_RayLength: 50
+  m_RayLength: 100
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
@@ -1115,6 +1116,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 20000
+  allAgents: []
   area: {fileID: 1819751139121548}
   turnSpeed: 300
   agent_number: 1
@@ -2301,6 +2303,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 20000
+  allAgents: []
   area: {fileID: 1819751139121548}
   turnSpeed: 300
   agent_number: 3
@@ -3454,6 +3457,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 20000
+  allAgents: []
   area: {fileID: 1819751139121548}
   turnSpeed: 300
   agent_number: 2
