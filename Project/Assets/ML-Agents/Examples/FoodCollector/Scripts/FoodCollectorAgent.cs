@@ -27,6 +27,7 @@ public class FoodCollectorAgent : Agent
     public Material frozenMaterial;
     public GameObject myLaser;
     public bool useVectorObs;
+    public bool noRay;
 
     EnvironmentParameters m_ResetParams;
 
@@ -47,13 +48,19 @@ public class FoodCollectorAgent : Agent
         if (useVectorObs)
         {
             var localVelocity = transform.InverseTransformDirection(m_AgentRb.velocity);
-            /*var localPositions = new Vector3[allAgents.Length];
-            for(int i = 0; i < allAgents.Length; i++)
+            sensor.AddObservation(localVelocity.x);
+            sensor.AddObservation(localVelocity.z);
+            sensor.AddObservation(System.Convert.ToInt32(m_Shoot));
+        }
+
+        if (noRay)
+        {
+            for (int i = 0; i < allAgents.Length; i++)
             {
-                localPositions[i] = allAgents[i].transform.position;
-                sensor.AddObservation(localPositions[i].x);
-                sensor.AddObservation(localPositions[i].y);
-                sensor.AddObservation(localPositions[i].z);
+                var localPositions = allAgents[i].transform.position;
+                sensor.AddObservation(localPositions.x);
+                sensor.AddObservation(localPositions.y);
+                sensor.AddObservation(localPositions.z);
             }
 
             var foods = GameObject.FindGameObjectsWithTag("food");
@@ -63,14 +70,7 @@ public class FoodCollectorAgent : Agent
                 sensor.AddObservation(food.transform.position.x);
                 sensor.AddObservation(food.transform.position.y);
                 sensor.AddObservation(food.transform.position.z);
-            }*/
-
-            sensor.AddObservation(localVelocity.x);
-            sensor.AddObservation(localVelocity.z);
-            sensor.AddObservation(System.Convert.ToInt32(m_Shoot));
-
-
-
+            }
         }
     }
 

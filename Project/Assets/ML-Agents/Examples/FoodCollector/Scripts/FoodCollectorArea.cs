@@ -101,7 +101,7 @@ public class FoodCollectorArea : MonoBehaviour
         if (Time.time > timeElapsed)
         {
             GameObject[] foodsObj = GameObject.FindGameObjectsWithTag("food");
-            if (foodsObj.Length < 1000)
+            if (foodsObj.Length < 500)
             {
 
                 Func<GameObject, Vector3> getLoc = (x) => x.transform.position;
