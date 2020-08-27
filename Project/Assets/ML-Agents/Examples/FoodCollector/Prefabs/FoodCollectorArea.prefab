@@ -448,7 +448,7 @@ MonoBehaviour:
   goodMaterial: {fileID: 2100000, guid: c67450f290f3e4897bc40276a619e78d, type: 2}
   frozenMaterial: {fileID: 2100000, guid: 66163cf35956a4be08e801b750c26f33, type: 2}
   myLaser: {fileID: 1081721624670010}
-  useVectorObs: 0
+  useVectorObs: 1
 --- !u!114 &114725457980523372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2746,7 +2746,7 @@ MonoBehaviour:
   goodMaterial: {fileID: 2100000, guid: c67450f290f3e4897bc40276a619e78d, type: 2}
   frozenMaterial: {fileID: 2100000, guid: 66163cf35956a4be08e801b750c26f33, type: 2}
   myLaser: {fileID: 102249641158157406}
-  useVectorObs: 0
+  useVectorObs: 1
 --- !u!114 &7025713055001609542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3203,7 +3203,7 @@ MonoBehaviour:
   goodMaterial: {fileID: 2100000, guid: c67450f290f3e4897bc40276a619e78d, type: 2}
   frozenMaterial: {fileID: 2100000, guid: 66163cf35956a4be08e801b750c26f33, type: 2}
   myLaser: {fileID: 3067436800144891371}
-  useVectorObs: 0
+  useVectorObs: 1
 --- !u!114 &8668944056947036490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3618,7 +3618,7 @@ MonoBehaviour:
   goodMaterial: {fileID: 2100000, guid: c67450f290f3e4897bc40276a619e78d, type: 2}
   frozenMaterial: {fileID: 2100000, guid: 66163cf35956a4be08e801b750c26f33, type: 2}
   myLaser: {fileID: 8497003218842268339}
-  useVectorObs: 0
+  useVectorObs: 1
 --- !u!114 &5833337801558206081
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -47,10 +47,30 @@ public class FoodCollectorAgent : Agent
         if (useVectorObs)
         {
             var localVelocity = transform.InverseTransformDirection(m_AgentRb.velocity);
-            var localPosition = transform.localPosition;
+            /*var localPositions = new Vector3[allAgents.Length];
+            for(int i = 0; i < allAgents.Length; i++)
+            {
+                localPositions[i] = allAgents[i].transform.position;
+                sensor.AddObservation(localPositions[i].x);
+                sensor.AddObservation(localPositions[i].y);
+                sensor.AddObservation(localPositions[i].z);
+            }
+
+            var foods = GameObject.FindGameObjectsWithTag("food");
+            print("food in collect obs " + foods.Length);
+            foreach (GameObject food in foods)
+            {
+                sensor.AddObservation(food.transform.position.x);
+                sensor.AddObservation(food.transform.position.y);
+                sensor.AddObservation(food.transform.position.z);
+            }*/
+
             sensor.AddObservation(localVelocity.x);
             sensor.AddObservation(localVelocity.z);
             sensor.AddObservation(System.Convert.ToInt32(m_Shoot));
+
+
+
         }
     }
 
