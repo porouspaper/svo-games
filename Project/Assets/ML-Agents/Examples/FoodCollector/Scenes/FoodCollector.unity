@@ -2603,7 +2603,7 @@ MonoBehaviour:
   equality: 0
   applesEaten: 
   totalApples: 0
-  SchellingCoop: 1
+  SchellingCoop: 0
 --- !u!4 &1574236049
 Transform:
   m_ObjectHideFlags: 0
