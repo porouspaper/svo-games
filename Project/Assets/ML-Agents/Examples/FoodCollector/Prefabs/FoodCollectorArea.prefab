@@ -409,17 +409,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 4
+    VectorObservationSize: 1512
     NumStackedVectorObservations: 1
     VectorActionSize: 03000000030000000300000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
-  m_BehaviorType: 2
+  m_BehaviorType: 0
   m_BehaviorName: FoodCollector
   TeamId: 0
-  m_UseChildSensors: 1
+  m_UseChildSensors: 0
   m_ObservableAttributeHandling: 0
 --- !u!114 &114176228333253036
 MonoBehaviour:
@@ -448,7 +448,8 @@ MonoBehaviour:
   goodMaterial: {fileID: 2100000, guid: c67450f290f3e4897bc40276a619e78d, type: 2}
   frozenMaterial: {fileID: 2100000, guid: 66163cf35956a4be08e801b750c26f33, type: 2}
   myLaser: {fileID: 1081721624670010}
-  useVectorObs: 1
+  useVectorObs: 0
+  noRay: 1
 --- !u!114 &114725457980523372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2707,17 +2708,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 4
+    VectorObservationSize: 1512
     NumStackedVectorObservations: 1
     VectorActionSize: 03000000030000000300000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
-  m_BehaviorType: 2
+  m_BehaviorType: 0
   m_BehaviorName: FoodCollector
   TeamId: 2
-  m_UseChildSensors: 1
+  m_UseChildSensors: 0
   m_ObservableAttributeHandling: 0
 --- !u!114 &2181709125259589745
 MonoBehaviour:
@@ -2746,7 +2747,8 @@ MonoBehaviour:
   goodMaterial: {fileID: 2100000, guid: c67450f290f3e4897bc40276a619e78d, type: 2}
   frozenMaterial: {fileID: 2100000, guid: 66163cf35956a4be08e801b750c26f33, type: 2}
   myLaser: {fileID: 102249641158157406}
-  useVectorObs: 1
+  useVectorObs: 0
+  noRay: 1
 --- !u!114 &7025713055001609542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3164,17 +3166,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 4
+    VectorObservationSize: 1512
     NumStackedVectorObservations: 1
     VectorActionSize: 03000000030000000300000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
-  m_BehaviorType: 2
+  m_BehaviorType: 0
   m_BehaviorName: FoodCollector
   TeamId: 1
-  m_UseChildSensors: 1
+  m_UseChildSensors: 0
   m_ObservableAttributeHandling: 0
 --- !u!114 &902677566554916148
 MonoBehaviour:
@@ -3203,7 +3205,8 @@ MonoBehaviour:
   goodMaterial: {fileID: 2100000, guid: c67450f290f3e4897bc40276a619e78d, type: 2}
   frozenMaterial: {fileID: 2100000, guid: 66163cf35956a4be08e801b750c26f33, type: 2}
   myLaser: {fileID: 3067436800144891371}
-  useVectorObs: 1
+  useVectorObs: 0
+  noRay: 1
 --- !u!114 &8668944056947036490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3579,17 +3582,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 4
+    VectorObservationSize: 1512
     NumStackedVectorObservations: 1
     VectorActionSize: 03000000030000000300000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
-  m_BehaviorType: 2
+  m_BehaviorType: 0
   m_BehaviorName: FoodCollector
   TeamId: 3
-  m_UseChildSensors: 1
+  m_UseChildSensors: 0
   m_ObservableAttributeHandling: 0
 --- !u!114 &4730636521947278038
 MonoBehaviour:
@@ -3618,7 +3621,8 @@ MonoBehaviour:
   goodMaterial: {fileID: 2100000, guid: c67450f290f3e4897bc40276a619e78d, type: 2}
   frozenMaterial: {fileID: 2100000, guid: 66163cf35956a4be08e801b750c26f33, type: 2}
   myLaser: {fileID: 8497003218842268339}
-  useVectorObs: 1
+  useVectorObs: 0
+  noRay: 1
 --- !u!114 &5833337801558206081
 MonoBehaviour:
   m_ObjectHideFlags: 0
