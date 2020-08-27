@@ -47,6 +47,7 @@ public class FoodCollectorAgent : Agent
         if (useVectorObs)
         {
             var localVelocity = transform.InverseTransformDirection(m_AgentRb.velocity);
+            var localPosition = transform.localPosition;
             sensor.AddObservation(localVelocity.x);
             sensor.AddObservation(localVelocity.z);
             sensor.AddObservation(System.Convert.ToInt32(m_Shoot));
@@ -157,7 +158,10 @@ public class FoodCollectorAgent : Agent
 
     void Hit()
     {
-        Freeze();
+        if (!m_FoodCollecterSettings.SchellingCoop)
+        {
+            Freeze();
+        }
         //AddRewardTemp(-50);
     }
 
