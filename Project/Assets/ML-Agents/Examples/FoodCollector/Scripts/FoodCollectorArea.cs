@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
-using System.Collections;
 
 public class FoodCollectorArea : MonoBehaviour
 {
@@ -14,42 +13,37 @@ public class FoodCollectorArea : MonoBehaviour
     public float timeNeeded = 2;
     public FoodCollectorSettings m_FoodCollecterSettings;
 
-    void CreateFood(int num, GameObject type)
+
+    void CreateFood(int num)
     {
         for (int i = 0; i < num; i++)
         {
-            GameObject f = Instantiate(type, new Vector3(UnityEngine.Random.Range(-range, range), 1f,
-                UnityEngine.Random.Range(-range, range)) + transform.position,
-                Quaternion.Euler(new Vector3(0f, UnityEngine.Random.Range(0f, 360f), 90f)));
-            f.GetComponent<FoodLogic>().myArea = this;
+            var loc = new Vector3(UnityEngine.Random.Range(-range, range), 1f,
+                UnityEngine.Random.Range(-range, range)) + transform.position;
+            InstantiateFood(loc);
         }
     }
 
     void CreateFoodLocal(Vector3 loc)
     {
+        InstantiateFood(loc);
+    }
+
+    void InstantiateFood(Vector3 loc)
+    {
         GameObject f = Instantiate(food, loc,
         Quaternion.Euler(new Vector3(0f, UnityEngine.Random.Range(0f, 360f), 90f)));
-        f.GetComponent<FoodLogic>().myArea = this;
         m_FoodCollecterSettings.totalApples += 1;
+        m_FoodCollecterSettings.foods.Add(f);
     }
 
     public void ResetFoodArea(GameObject[] agents)
     {
-        foreach (GameObject agent in agents)
-        {
-            if (agent.transform.parent == gameObject.transform)
-            {
-                agent.transform.position = new Vector3(UnityEngine.Random.Range(-range, range), 2f,
-                    UnityEngine.Random.Range(-range, range))
-                    + transform.position;
-                agent.transform.rotation = Quaternion.Euler(new Vector3(0f, UnityEngine.Random.Range(0, 360)));
-            }
-        }
 
-        CreateFood(numFood, food);
-        m_FoodCollecterSettings.totalApples = numFood;
-
+        CreateFood(numFood);
+        m_FoodCollecterSettings.totalApples += numFood;
     }
+
 
 
     public static int CompareLocX(Vector3 v1, Vector3 v2)
@@ -99,32 +93,37 @@ public class FoodCollectorArea : MonoBehaviour
             return 0;
         }
     }
-
+    
     private void FixedUpdate()
     {
         //print("updating");
 
         if (Time.time > timeElapsed)
         {
-            GameObject[] foods = GameObject.FindGameObjectsWithTag("food");
-            if (foods.Length < 1000)
+            GameObject[] foodsObj = GameObject.FindGameObjectsWithTag("food");
+            if (foodsObj.Length < 1000)
             {
 
                 Func<GameObject, Vector3> getLoc = (x) => x.transform.position;
 
-                Vector3[] locsX = new Vector3[foods.Length];
-                Vector3[] locsY = new Vector3[foods.Length];
+                Vector3[] locsX = new Vector3[foodsObj.Length];
+                Vector3[] locsY = new Vector3[foodsObj.Length];
 
-                for (int i = 0; i < foods.Length; i++)
+   
+                for (int i = 0; i < foodsObj.Length; i++)
                 {
-                    locsX[i] = getLoc(foods[i]);
-                    locsY[i] = getLoc(foods[i]);
+                    if (foodsObj[i] != null)
+                    {
+                        locsX[i] = getLoc(foodsObj[i]);
+                        locsY[i] = getLoc(foodsObj[i]);
+                    }
                 }
 
                 Array.Sort(locsX, CompareLocX);
                 Array.Sort(locsY, CompareLocY);
-                Array.Sort(foods, CompareFoodX);
+                Array.Sort(foodsObj, CompareFoodX);
 
+                
                 Vector3 prev = Vector3.zero;
                 for (int i = 0; i < locsX.Length; i++)
                 {
@@ -133,6 +132,7 @@ public class FoodCollectorArea : MonoBehaviour
 
                     //print(foods[i].layer);
 
+                    HashSet<Vector3> countedFoods = new HashSet<Vector3>();
                     if ( locsX.Length == 1 || i > 0 && Vector3.Distance(prev, locsX[i]) > radius)
                     {
                         prev = locsX[i];
@@ -146,6 +146,7 @@ public class FoodCollectorArea : MonoBehaviour
                                     {
                                         print("Distance good");
                                         count += 1;
+                                        countedFoods.Add(locsX[j]);
                                     }
                                 }
                             }
@@ -161,8 +162,11 @@ public class FoodCollectorArea : MonoBehaviour
                                 {
                                     if (Vector3.Distance(locsY[translate_i], locsY[j]) < radius)
                                     {
-                                        print("Distance good");
-                                        count += 1;
+                                        if (!countedFoods.Contains(locsY[j]))
+                                        {
+                                            print("Distance good");
+                                            count += 1;
+                                        }
                                     }
                                 }
                             }
@@ -170,16 +174,19 @@ public class FoodCollectorArea : MonoBehaviour
 
                         count = Math.Min(count, myLen);
                         print("count " + count);
-                        if (count == 1)
+                        if (m_FoodCollecterSettings.SchellingCoop)
                         {
-                            foods[i].layer = 8;
-                            print("set layer invisible");
-                        }
-                        else
-                        {
-                            foods[i].layer = 0;
-                            print("set collision possible");
+                            if (count == 1)
+                            {
+                                foodsObj[i].layer = 8;
+                                print("set layer invisible");
+                            }
+                            else
+                            {
+                                foodsObj[i].layer = 0;
+                                print("set collision possible");
 
+                            }
                         }
                         float p = probabilities[count - 1];
                         var random = new System.Random();

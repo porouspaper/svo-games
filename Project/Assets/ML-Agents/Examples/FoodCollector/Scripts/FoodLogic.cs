@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class FoodLogic : MonoBehaviour
 {
-    public FoodCollectorArea myArea;
 
     public void OnEaten()
     {
+        FoodCollectorSettings m_FoodCollecterSettings = FindObjectOfType<FoodCollectorSettings>();
+        m_FoodCollecterSettings.foods.Remove(gameObject);
+
         Destroy(gameObject);
+
     }
 }

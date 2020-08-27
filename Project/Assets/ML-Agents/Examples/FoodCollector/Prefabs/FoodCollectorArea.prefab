@@ -388,7 +388,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1464820575638702}
   serializedVersion: 2
-  m_Mass: 10
+  m_Mass: 50
   m_Drag: 0.5
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -414,7 +414,7 @@ MonoBehaviour:
     VectorActionSize: 03000000030000000300000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
-  m_Model: {fileID: 5022602860645237092, guid: b1b3086da31584faab4d25dd59cb2adc, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 39c740c7bdc1d4aa4bf86ba393fc7dc1, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 2
   m_BehaviorName: FoodCollector
@@ -436,7 +436,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 20000
+  MaxStep: 10000
   allAgents: []
   area: {fileID: 1819751139121548}
   turnSpeed: 300

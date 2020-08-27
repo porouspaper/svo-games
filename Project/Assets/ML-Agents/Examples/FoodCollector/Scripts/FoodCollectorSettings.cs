@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.MLAgents;
 using System;
+using System.Collections;
 
 public class FoodCollectorSettings : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class FoodCollectorSettings : MonoBehaviour
     public int[] applesEaten;
     public int totalApples;
 
+    public bool SchellingCoop;
+    public ArrayList foods;
 
 
 
@@ -35,34 +38,51 @@ public class FoodCollectorSettings : MonoBehaviour
     {
         Academy.Instance.OnEnvironmentReset += EnvironmentReset;
         m_Recorder = Academy.Instance.StatsRecorder;
+        foods = new ArrayList();
+
     }
 
-    void EnvironmentReset()
+    public void EnvironmentReset()
     {
-        ClearObjects(GameObject.FindGameObjectsWithTag("food"));
 
-        agents = GameObject.FindGameObjectsWithTag("agent");
-        listArea = FindObjectsOfType<FoodCollectorArea>();
-        foreach (var fa in listArea)
-        {
-            fa.ResetFoodArea(agents);
-        }
+
 
         agentReturns = new int[rewardAgents.Length];
         agentLasers = new int[rewardAgents.Length];
         applesEaten = new int[rewardAgents.Length];
         equality = 0;
 
+        GameObject[] curFoods = foods.ToArray(typeof(GameObject)) as GameObject[];
+        ClearObjects(curFoods);
+        foods = new ArrayList();
+        agents = GameObject.FindGameObjectsWithTag("agent");
+        print("length of agents " + agents.Length);
+        listArea = FindObjectsOfType<FoodCollectorArea>();
+        foreach (var fa in listArea)
+        {
+            fa.ResetFoodArea(agents);
+        }
+
+
 
     }
 
     void ClearObjects(GameObject[] objects)
     {
+        if (objects.Length == 0)
+        {
+            print("no objects to clear");
+        }
         foreach (var food in objects)
         {
-            Destroy(food);
+            if (food != null)
+            {
+                Destroy(food);
+            }
         }
     }
+
+
 
     public void Update()
     {

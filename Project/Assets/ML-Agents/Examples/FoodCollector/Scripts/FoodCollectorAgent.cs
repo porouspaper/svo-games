@@ -144,7 +144,7 @@ public class FoodCollectorAgent : Agent
             {
                 if (hit.collider.gameObject.CompareTag("agent"))
                 {
-                    AddReward(-1);
+                    AddRewardTemp(-1);
                     hit.collider.gameObject.GetComponent<FoodCollectorAgent>().Hit();
                 }
             }
@@ -203,23 +203,29 @@ public class FoodCollectorAgent : Agent
         {
             actionsOut[2] = 2f;
         }
-        if (Input.GetKey(KeyCode.W))
+        else if (Input.GetKey(KeyCode.W))
         {
             actionsOut[0] = 1f;
         }
-        if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
         {
             actionsOut[2] = 1f;
         }
-        if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
             actionsOut[0] = 2f;
+        }
+        else
+        {
+            actionsOut[0] = 0;
+            actionsOut[1] = 0;
         }
         actionsOut[3] = Input.GetKey(KeyCode.Space) ? 1.0f : 0.0f;
     }
 
     public override void OnEpisodeBegin()
     {
+        m_FoodCollecterSettings.EnvironmentReset();
         m_Shoot = false;
         m_AgentRb.velocity = Vector3.zero;
         myLaser.transform.localScale = new Vector3(0f, 0f, 0f);
@@ -236,7 +242,7 @@ public class FoodCollectorAgent : Agent
         if (collision.gameObject.CompareTag("food"))
         {
             collision.gameObject.GetComponent<FoodLogic>().OnEaten();
-            AddReward(1);
+            AddRewardTemp(1);
             logAppleEaten();
         }
     }
@@ -260,21 +266,27 @@ public class FoodCollectorAgent : Agent
 
     public void AddRewardTemp(int f)
     {
-        var svoDegrees = m_FoodCollecterSettings.svoDegrees;
-        double rads = Math.PI * svoDegrees / 180;
-        var weight = 1 / (allAgents.Length - 1);
-
-        for(int i = 0; i < allAgents.Length; i++)
+        if (!m_FoodCollecterSettings.SchellingCoop)
         {
-            if (i != agent_number)
-            {
-                Agent a = allAgents[i];
-                a.AddReward((float)(weight * Math.Sin(rads) * f));
-            }
-        }
-        
-        AddReward((float)(Math.Cos(rads) * f));
+            var svoDegrees = m_FoodCollecterSettings.svoDegrees;
+            double rads = Math.PI * svoDegrees / 180;
+            var weight = 1 / (allAgents.Length - 1);
 
+            for (int i = 0; i < allAgents.Length; i++)
+            {
+                if (i != agent_number)
+                {
+                    Agent a = allAgents[i];
+                    a.AddReward((float)(weight * Math.Sin(rads) * f));
+                }
+            }
+
+            AddReward((float)(Math.Cos(rads) * f));
+        }
+        else
+        {
+            AddReward(f);
+        }
         logReward(f);
     }
 
