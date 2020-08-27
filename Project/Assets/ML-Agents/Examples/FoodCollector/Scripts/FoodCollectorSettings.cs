@@ -51,7 +51,7 @@ public class FoodCollectorSettings : MonoBehaviour
         agentLasers = new int[rewardAgents.Length];
         applesEaten = new int[rewardAgents.Length];
         equality = 0;
-
+        totalApples = 0;
         GameObject[] curFoods = foods.ToArray(typeof(GameObject)) as GameObject[];
         ClearObjects(curFoods);
         foods = new ArrayList();
