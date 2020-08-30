@@ -6,7 +6,7 @@ using System;
 
 public class FoodCollectorAgent : Agent
 {
-    FoodCollectorSettings m_FoodCollecterSettings;
+    public FoodCollectorSettings m_FoodCollecterSettings;
     public Agent[] allAgents;
     public GameObject area;
     FoodCollectorArea m_MyArea;
@@ -36,7 +36,6 @@ public class FoodCollectorAgent : Agent
     {
         m_AgentRb = GetComponent<Rigidbody>();
         m_MyArea = area.GetComponent<FoodCollectorArea>();
-        m_FoodCollecterSettings = FindObjectOfType<FoodCollectorSettings>();
         m_ResetParams = Academy.Instance.EnvironmentParameters;
         SetResetParameters();
         Physics.IgnoreLayerCollision(0, 8);

@@ -41,7 +41,6 @@ public class FoodCollectorArea : MonoBehaviour
     {
 
         CreateFood(numFood);
-        m_FoodCollecterSettings.totalApples += numFood;
     }
 
 
