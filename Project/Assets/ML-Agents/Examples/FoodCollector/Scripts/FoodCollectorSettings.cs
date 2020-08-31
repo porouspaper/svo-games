@@ -9,7 +9,7 @@ public class FoodCollectorSettings : MonoBehaviour
     public GameObject[] agents;
     public FoodCollectorArea[] listArea;
 
-    public int svoDegrees;
+    public int[] svoDegrees;
 
     public Agent[] rewardAgents;
 

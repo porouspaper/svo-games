@@ -654,6 +654,11 @@ PrefabInstance:
       propertyPath: m_FoodCollecterSettings
       value: 
       objectReference: {fileID: 1574236048}
+    - target: {fileID: 114176228333253036, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: MaxStep
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 114181230191376748, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: probabilities.Array.size
@@ -858,7 +863,12 @@ PrefabInstance:
     - target: {fileID: 680806947893126568, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: TeamId
-      value: 0
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 680806947893126568, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_Model
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 902677566554916148, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
@@ -928,7 +938,12 @@ PrefabInstance:
     - target: {fileID: 2581846950986265473, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: TeamId
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581846950986265473, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_Model
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4730636521947278038, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
@@ -989,7 +1004,12 @@ PrefabInstance:
     - target: {fileID: 8000726519914108246, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: TeamId
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8000726519914108246, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_Model
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8550430260690980236, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
@@ -1108,7 +1128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agents: []
   listArea: []
-  svoDegrees: 0
+  svoDegrees: 00000000000000000000000000000000
   rewardAgents:
   - {fileID: 1142607727}
   - {fileID: 1142607729}

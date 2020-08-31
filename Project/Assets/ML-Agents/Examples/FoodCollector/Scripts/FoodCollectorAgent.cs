@@ -179,9 +179,10 @@ public class FoodCollectorAgent : Agent
     {
         if (!m_FoodCollecterSettings.SchellingCoop)
         {
-            Freeze();
+            //Freeze();
+            AddRewardTemp(-50);
+
         }
-        //AddRewardTemp(-50);
     }
 
     void logLaser()
@@ -291,8 +292,8 @@ public class FoodCollectorAgent : Agent
     {
         if (!m_FoodCollecterSettings.SchellingCoop)
         {
-            var svoDegrees = m_FoodCollecterSettings.svoDegrees;
-            double rads = Math.PI * svoDegrees / 180;
+            var svoDegrees = m_FoodCollecterSettings.svoDegrees[agent_number];
+            double rads = (double) (Math.PI * svoDegrees / 180);
             var weight = 1 / (allAgents.Length - 1);
 
             for (int i = 0; i < allAgents.Length; i++)
