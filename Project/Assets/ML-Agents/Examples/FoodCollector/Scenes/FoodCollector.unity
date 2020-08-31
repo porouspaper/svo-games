@@ -703,7 +703,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5022602860645237092, guid: d0cca7a016c734f6f9524b2789be14af,
+        type: 3}
     - target: {fileID: 114374774605792098, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: m_InferenceDevice
@@ -713,6 +714,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BehaviorType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114374774605792098, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_BrainParameters.VectorObservationSize
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114443152683847924, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
@@ -863,12 +869,18 @@ PrefabInstance:
     - target: {fileID: 680806947893126568, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: TeamId
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 680806947893126568, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: m_Model
       value: 
+      objectReference: {fileID: 5022602860645237092, guid: d0cca7a016c734f6f9524b2789be14af,
+        type: 3}
+    - target: {fileID: 680806947893126568, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_BrainParameters.VectorObservationSize
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 902677566554916148, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
@@ -938,12 +950,18 @@ PrefabInstance:
     - target: {fileID: 2581846950986265473, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: TeamId
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2581846950986265473, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: m_Model
       value: 
+      objectReference: {fileID: 5022602860645237092, guid: d0cca7a016c734f6f9524b2789be14af,
+        type: 3}
+    - target: {fileID: 2581846950986265473, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_BrainParameters.VectorObservationSize
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4730636521947278038, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
@@ -1004,12 +1022,18 @@ PrefabInstance:
     - target: {fileID: 8000726519914108246, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: TeamId
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8000726519914108246, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: m_Model
       value: 
+      objectReference: {fileID: 5022602860645237092, guid: d0cca7a016c734f6f9524b2789be14af,
+        type: 3}
+    - target: {fileID: 8000726519914108246, guid: 38400a68c4ea54b52998e34ee238d1a7,
+        type: 3}
+      propertyPath: m_BrainParameters.VectorObservationSize
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8550430260690980236, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
@@ -1140,7 +1164,7 @@ MonoBehaviour:
   equality: 0
   applesEaten: 
   totalApples: 0
-  SchellingCoop: 0
+  SchellingCoop: 1
 --- !u!4 &1574236049
 Transform:
   m_ObjectHideFlags: 0

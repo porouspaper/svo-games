@@ -52,7 +52,7 @@ public class FoodCollectorAgent : Agent
             sensor.AddObservation(System.Convert.ToInt32(m_Shoot));
         }
 
-        if (noRay)
+        /*if (noRay)
         {
             for (int i = 0; i < allAgents.Length; i++)
             {
@@ -70,7 +70,7 @@ public class FoodCollectorAgent : Agent
                 sensor.AddObservation(food.transform.position.y);
                 sensor.AddObservation(food.transform.position.z);
             }
-        }
+        }*/
     }
 
     public Color32 ToColor(int hexVal)
@@ -179,8 +179,8 @@ public class FoodCollectorAgent : Agent
     {
         if (!m_FoodCollecterSettings.SchellingCoop)
         {
-            //Freeze();
-            AddRewardTemp(-50);
+            Freeze();
+            //AddRewardTemp(-50);
 
         }
     }
