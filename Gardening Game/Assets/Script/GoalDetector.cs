@@ -29,7 +29,8 @@ public class GoalDetector : MonoBehaviour
     {
         print(this.isActiveAndEnabled);
         print("collide something");
-        if (col.gameObject.CompareTag("ingredient"))
+        if (col.gameObject.CompareTag("ingredient1") || col.gameObject.CompareTag("ingredient2")
+            || col.gameObject.CompareTag("ingredient3") || col.gameObject.CompareTag("ingredient4"))
         {
             print("collision ingredient");
             if (ingredients.Count == 0 && !ingredients.Contains(col.gameObject))
@@ -48,8 +49,9 @@ public class GoalDetector : MonoBehaviour
     //unregister an object
     private void OnTriggerExit(Collider col)
     {
-        print(this.isActiveAndEnabled);
-        if (col.gameObject.CompareTag("ingredient"))
+        //print(this.isActiveAndEnabled);
+        if (col.gameObject.CompareTag("ingredient1") || col.gameObject.CompareTag("ingredient2")
+                   || col.gameObject.CompareTag("ingredient3") || col.gameObject.CompareTag("ingredient4"))
         {
             if (ingredients.Contains(col.gameObject))
             {

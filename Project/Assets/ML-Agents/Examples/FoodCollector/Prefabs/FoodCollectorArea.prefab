@@ -409,14 +409,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 1512
+    VectorObservationSize: 4
     NumStackedVectorObservations: 1
     VectorActionSize: 03000000030000000300000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: d0cca7a016c734f6f9524b2789be14af, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 2
   m_BehaviorName: FoodCollector
   TeamId: 0
   m_UseChildSensors: 1
@@ -437,6 +437,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 10000
+  m_FoodCollecterSettings: {fileID: 0}
   allAgents: []
   area: {fileID: 1819751139121548}
   turnSpeed: 300
@@ -2708,14 +2709,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 1512
+    VectorObservationSize: 4
     NumStackedVectorObservations: 1
     VectorActionSize: 03000000030000000300000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: d0cca7a016c734f6f9524b2789be14af, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 2
   m_BehaviorName: FoodCollector
   TeamId: 2
   m_UseChildSensors: 1
@@ -2736,6 +2737,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 10000
+  m_FoodCollecterSettings: {fileID: 0}
   allAgents: []
   area: {fileID: 1819751139121548}
   turnSpeed: 300
@@ -3166,14 +3168,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 1512
+    VectorObservationSize: 4
     NumStackedVectorObservations: 1
     VectorActionSize: 03000000030000000300000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: d0cca7a016c734f6f9524b2789be14af, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 2
   m_BehaviorName: FoodCollector
   TeamId: 1
   m_UseChildSensors: 1
@@ -3194,6 +3196,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 10000
+  m_FoodCollecterSettings: {fileID: 0}
   allAgents: []
   area: {fileID: 1819751139121548}
   turnSpeed: 300
@@ -3582,14 +3585,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 1512
+    VectorObservationSize: 4
     NumStackedVectorObservations: 1
     VectorActionSize: 03000000030000000300000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: d0cca7a016c734f6f9524b2789be14af, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 2
   m_BehaviorName: FoodCollector
   TeamId: 3
   m_UseChildSensors: 1
@@ -3610,6 +3613,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 10000
+  m_FoodCollecterSettings: {fileID: 0}
   allAgents: []
   area: {fileID: 1819751139121548}
   turnSpeed: 300

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1563349611296776726}
   - component: {fileID: 1563349611296776727}
   - component: {fileID: 1563349611296776724}
-  - component: {fileID: 2708692401922560899}
+  - component: {fileID: 1414426921889138214}
   m_Layer: 0
   m_Name: Ingredient
   m_TagString: ingredient
@@ -57,6 +57,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -68,6 +69,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -109,7 +111,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &2708692401922560899
+--- !u!114 &1414426921889138214
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,11 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c38c641c934f47bb85d04698174c514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  respawn: 1
-  range: 20
-  ingredient: {fileID: 1563349611296776725}
+  type: 0
   ingredient1: {fileID: 2100000, guid: 5c718876bf9404cc29c69b0ae656fb90, type: 2}
-  ingredient2: {fileID: 2100000, guid: e13ad2b31b67b44769d347e24be4b0aa, type: 2}
-  ingredient3: {fileID: 2100000, guid: ea54b4cc9ecd3428aa80dbb7f957d697, type: 2}
-  ingredient4: {fileID: 2100000, guid: d799ff268ed5c44bba2078224004a102, type: 2}
+  ingredient2: {fileID: 2100000, guid: ea54b4cc9ecd3428aa80dbb7f957d697, type: 2}
+  ingredient3: {fileID: 2100000, guid: e13ad2b31b67b44769d347e24be4b0aa, type: 2}
+  ingredient4: {fileID: 2100000, guid: 8972c63adbff343029e33b0668c2d252, type: 2}
+  range: 0
+  myAreaPosition: {x: 0, y: 0, z: 0}

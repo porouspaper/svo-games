@@ -10,6 +10,7 @@ public class GoalLogic : MonoBehaviour
 
     public Material cooperativeMaterial;
     public Material selfishMaterial;
+    public GardenScene settings;
 
 
     private void Start()
@@ -38,10 +39,10 @@ public class GoalLogic : MonoBehaviour
         FoodScript fs = f.GetComponent<FoodScript>();
         fs.types = types;
         fs.fromCooperative = isCooperative;
-        GameObject[] agents = GameObject.FindGameObjectsWithTag("Agent");
-        foreach (GameObject agent in agents)
+        GardenerAgent[] agents = settings.agents;
+        foreach (GardenerAgent agent in agents)
         {
-            Collider cols = agent.GetComponent<BoxCollider>();
+            Collider cols = agent.GetComponent<SphereCollider>();
             Physics.IgnoreCollision(cols, fs.GetComponent<Collider>());
 
         }

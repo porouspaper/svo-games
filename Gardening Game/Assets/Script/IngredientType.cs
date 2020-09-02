@@ -5,12 +5,12 @@ using UnityEngine;
 public class IngredientType : MonoBehaviour
 {
     public int type;
-    public bool respawn = true;
     public Material ingredient1;
     public Material ingredient2;
     public Material ingredient3;
     public Material ingredient4;
-    public GardenArea myArea;
+    public float range;
+    public Vector3 myAreaPosition;
 
     public void SetType(int k)
     {
@@ -38,15 +38,10 @@ public class IngredientType : MonoBehaviour
 
     public void OnDestroy()
     {
-        if (respawn)
-        {
-            transform.position = new Vector3(Random.Range(-myArea.range, myArea.range), 0f,
-                Random.Range(-myArea.range, myArea.range)) + myArea.transform.position;
-        }
-        else
-        {
-            DestroyImmediate(this.gameObject);
-        }
+
+        transform.position = new Vector3(Random.Range(-range, range), 0f,
+            Random.Range(-range, range)) + myAreaPosition;
+        
     }
 
 

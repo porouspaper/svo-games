@@ -703,7 +703,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: d0cca7a016c734f6f9524b2789be14af,
+      objectReference: {fileID: 5022602860645237092, guid: be85e26838ebe43cabf1f0f8db2a7674,
         type: 3}
     - target: {fileID: 114374774605792098, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
@@ -834,7 +834,7 @@ PrefabInstance:
     - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: m_MaxRayDegrees
-      value: 70
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
@@ -844,7 +844,7 @@ PrefabInstance:
     - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
       propertyPath: m_RayLength
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114725457980523372, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
@@ -875,7 +875,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: d0cca7a016c734f6f9524b2789be14af,
+      objectReference: {fileID: 5022602860645237092, guid: be85e26838ebe43cabf1f0f8db2a7674,
         type: 3}
     - target: {fileID: 680806947893126568, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
@@ -956,7 +956,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: d0cca7a016c734f6f9524b2789be14af,
+      objectReference: {fileID: 5022602860645237092, guid: be85e26838ebe43cabf1f0f8db2a7674,
         type: 3}
     - target: {fileID: 2581846950986265473, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
@@ -1028,7 +1028,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: d0cca7a016c734f6f9524b2789be14af,
+      objectReference: {fileID: 5022602860645237092, guid: be85e26838ebe43cabf1f0f8db2a7674,
         type: 3}
     - target: {fileID: 8000726519914108246, guid: 38400a68c4ea54b52998e34ee238d1a7,
         type: 3}
@@ -1152,7 +1152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agents: []
   listArea: []
-  svoDegrees: 3b0100003b0100003b0100003b010000
+  svoDegrees: 00000000000000000000000000000000
   rewardAgents:
   - {fileID: 1142607727}
   - {fileID: 1142607729}

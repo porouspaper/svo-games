@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4566518962728259758}
   - component: {fileID: 4380803888073220452}
   - component: {fileID: 4079072833802691900}
-  - component: {fileID: 114446346540502802}
-  - component: {fileID: 114317401570091036}
+  - component: {fileID: 2298676652699085497}
+  - component: {fileID: -5500179093833678429}
   m_Layer: 0
   m_Name: Goal
   m_TagString: goal
@@ -57,6 +57,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -68,6 +69,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -93,7 +95,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114446346540502802
+--- !u!114 &2298676652699085497
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,10 +107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0359a3a557b0a4d328a33c115f2e9531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cookTime: 3
+  cookTime: 5
   ingredients: []
-  timeLeft: 1
---- !u!114 &114317401570091036
+  timeLeft: 5
+--- !u!114 &-5500179093833678429
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   food: {fileID: 5554975401198188834, guid: ff4679487174b4456bea2bf64f9de99f, type: 3}
-  range: 3
+  range: 5
   isCooperative: 0
   cooperativeMaterial: {fileID: 2100000, guid: e89733a77310749b6bf480e48049bcf3, type: 2}
-  selfishMaterial: {fileID: 2100000, guid: 8972c63adbff343029e33b0668c2d252, type: 2}
+  selfishMaterial: {fileID: 2100000, guid: 2bad51497928b487e921048ad2304fa1, type: 2}

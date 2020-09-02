@@ -10,6 +10,7 @@ public class FoodCollectorSettings : MonoBehaviour
     public FoodCollectorArea[] listArea;
 
     public int[] svoDegrees;
+    
 
     public Agent[] rewardAgents;
 
@@ -138,6 +139,7 @@ public class FoodCollectorSettings : MonoBehaviour
             m_Recorder.Add("Equality", equality);
             m_Recorder.Add("TotalApples", totalApples);
         }
+
     }
 
 }

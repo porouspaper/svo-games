@@ -2,7 +2,7 @@
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
-
+using System;
 
 public class GardenerAgent : Agent
 {
@@ -15,6 +15,7 @@ public class GardenerAgent : Agent
     GardenArea m_MyArea;
     GardenScene m_scene;
     EnvironmentParameters m_ResetParams;
+    public float svoDegrees;
 
     public Material ingredient1;
     public Material ingredient2;
@@ -28,7 +29,6 @@ public class GardenerAgent : Agent
         m_MyArea = area.GetComponent<GardenArea>();
         m_scene = FindObjectOfType<GardenScene>();
         m_ResetParams = Academy.Instance.EnvironmentParameters;
-        scale = m_ResetParams.GetWithDefault("scale", 1.5f);
         switch (myType % 4)
         {
             case 0:
@@ -54,24 +54,25 @@ public class GardenerAgent : Agent
 
     private void Update()
     {
-        AddReward(-0.0001f);
+        AddRewardTemp(-0.0001f);
     }
 
     public override void OnEpisodeBegin()
     {
         m_AgentRb.velocity = Vector3.zero;
 
-        transform.position = new Vector3(Random.Range(-m_MyArea.range, m_MyArea.range),
-            2f, Random.Range(-m_MyArea.range, m_MyArea.range))
+        transform.position = new Vector3(UnityEngine.Random.Range(-m_MyArea.range, m_MyArea.range),
+            0f, UnityEngine.Random.Range(-m_MyArea.range, m_MyArea.range))
             + area.transform.position;
-        transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0, 360)));
+        transform.rotation = Quaternion.Euler(new Vector3(0f, UnityEngine.Random.Range(0, 360)));
 
     }
 
 
     public void MoveAgent(float[] act)
     {
-        
+
+        print("moving");
         var dirToGo = Vector3.zero;
         var rotateDir = Vector3.zero;
 
@@ -112,7 +113,7 @@ public class GardenerAgent : Agent
 
 
 
-        m_AgentRb.AddForce(dirToGo * moveSpeed);
+        m_AgentRb.AddForce(dirToGo * moveSpeed, ForceMode.VelocityChange);
         transform.Rotate(rotateDir, Time.fixedDeltaTime * turnSpeed);
 
 
@@ -141,10 +142,10 @@ public class GardenerAgent : Agent
 
     }
 
-    void OnTriggerEnter(Collider collision)
+    void OnCollisionEnter(Collision collision)
     {
         //print("colliding");
-        if (collision.gameObject.CompareTag("Food"))
+        if (collision.gameObject.CompareTag("food"))
         {
             FoodScript fs = collision.gameObject.GetComponent<FoodScript>();
 
@@ -161,16 +162,39 @@ public class GardenerAgent : Agent
                         rewd += types[i] * (scale);
                     }
                 }
-                AddReward(rewd);
+                AddRewardTemp(rewd);
             }
             else
             {
-                AddReward(types[myType]);
+                AddRewardTemp(types[myType]);
             }
         }
 
     }
 
+    public void AddRewardTemp(float f)
+    {
+        if (!m_scene.schellingCoop)
+        {
+            double rads = (double)(Math.PI * svoDegrees / 180);
+            var weight = 1 / 3;
+
+            for (int i = 0; i < m_scene.agents.Length; i++)
+            {
+                if (i != myType % 4)
+                {
+                    Agent a = m_scene.agents[i];
+                    a.AddReward( (float) (weight * Math.Sin(rads) * f));
+                }
+            }
+
+            AddReward((float)(Math.Cos(rads) * f));
+        }
+        else
+        {
+            AddReward(f);
+        }
+    }
 
     public override void Heuristic(float[] actionsOut)
     {
