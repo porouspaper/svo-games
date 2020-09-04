@@ -52,17 +52,14 @@ public class GardenerAgent : Agent
 
     }
 
-    private void Update()
-    {
-        AddRewardTemp(-0.0001f);
-    }
+
 
     public override void OnEpisodeBegin()
     {
         m_AgentRb.velocity = Vector3.zero;
 
-        transform.position = new Vector3(UnityEngine.Random.Range(-m_MyArea.range, m_MyArea.range),
-            0f, UnityEngine.Random.Range(-m_MyArea.range, m_MyArea.range))
+        transform.position = new Vector3(UnityEngine.Random.Range(-m_MyArea.range + 0.5f, m_MyArea.range - 0.5f),
+            0f, UnityEngine.Random.Range(-m_MyArea.range + 0.5f, m_MyArea.range - 0.5f))
             + area.transform.position;
         transform.rotation = Quaternion.Euler(new Vector3(0f, UnityEngine.Random.Range(0, 360)));
 
@@ -71,6 +68,7 @@ public class GardenerAgent : Agent
 
     public void MoveAgent(float[] act)
     {
+        print("action inputted" + act);
 
         print("moving");
         var dirToGo = Vector3.zero;
@@ -115,7 +113,8 @@ public class GardenerAgent : Agent
 
         m_AgentRb.AddForce(dirToGo * moveSpeed, ForceMode.VelocityChange);
         transform.Rotate(rotateDir, Time.fixedDeltaTime * turnSpeed);
-
+        print("going this direction " + dirToGo);
+        print("speed" + moveSpeed);
 
         if (m_AgentRb.velocity.sqrMagnitude > 25f) // slow it down
         {
@@ -147,6 +146,7 @@ public class GardenerAgent : Agent
         //print("colliding");
         if (collision.gameObject.CompareTag("food"))
         {
+            print("colliding with food");
             FoodScript fs = collision.gameObject.GetComponent<FoodScript>();
 
 
@@ -168,6 +168,8 @@ public class GardenerAgent : Agent
             {
                 AddRewardTemp(types[myType]);
             }
+
+            m_scene.foodCount -= 1;
         }
 
     }
@@ -181,18 +183,24 @@ public class GardenerAgent : Agent
 
             for (int i = 0; i < m_scene.agents.Length; i++)
             {
-                if (i != myType % 4)
+                if (i != myType)
                 {
                     Agent a = m_scene.agents[i];
-                    a.AddReward( (float) (weight * Math.Sin(rads) * f));
+                    float theirf = (float)(weight * Math.Sin(rads) * f);
+                    a.AddReward(theirf);
+                    m_scene.collectiveReturn[i] += theirf;
                 }
             }
 
-            AddReward((float)(Math.Cos(rads) * f));
+            float newf = (float)(Math.Cos(rads) * f);
+            AddReward(newf);
+            m_scene.collectiveReturn[myType] += newf;
+
         }
         else
         {
             AddReward(f);
+            m_scene.collectiveReturn[myType] += f;
         }
     }
 

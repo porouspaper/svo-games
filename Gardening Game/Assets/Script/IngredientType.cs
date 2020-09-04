@@ -39,7 +39,7 @@ public class IngredientType : MonoBehaviour
     public void OnDestroy()
     {
 
-        transform.position = new Vector3(Random.Range(-range, range), 0f,
+        transform.position = new Vector3(Random.Range(-range, range), 4f,
             Random.Range(-range, range)) + myAreaPosition;
         
     }
