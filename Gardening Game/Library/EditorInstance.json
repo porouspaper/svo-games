@@ -1,6 +1,6 @@
 {
-	"process_id" : 25016,
+	"process_id" : 2743,
 	"version" : "2019.4.0f1",
-	"app_path" : "/Applications/Unity/Hub/Editor/2019.4.0f1/Unity.app",
-	"app_contents_path" : "/Applications/Unity/Hub/Editor/2019.4.0f1/Unity.app/Contents"
+	"app_path" : "/opt/Editor/Unity",
+	"app_contents_path" : "/opt/Editor/Data"
 }
