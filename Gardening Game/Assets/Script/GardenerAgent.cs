@@ -68,16 +68,19 @@ public class GardenerAgent : Agent
 
     public void MoveAgent(float[] act)
     {
-        print("action inputted" + act);
+        /*print("action inputted" + act[0] + " " + act[1] + " " + act[2]);
 
-        print("moving");
+        print("moving");*/
         var dirToGo = Vector3.zero;
         var rotateDir = Vector3.zero;
 
 
         var forwardAxis = (int)act[0];
+        //print("forwardAxis" + forwardAxis);
         var rightAxis = (int)act[1];
+        //print("rightAxis" + rightAxis);
         var rotateAxis = (int)act[2];
+        //print("rotateAxis" + rotateAxis);
 
         switch (forwardAxis)
         {
@@ -113,8 +116,8 @@ public class GardenerAgent : Agent
 
         m_AgentRb.AddForce(dirToGo * moveSpeed, ForceMode.VelocityChange);
         transform.Rotate(rotateDir, Time.fixedDeltaTime * turnSpeed);
-        print("going this direction " + dirToGo);
-        print("speed" + moveSpeed);
+        /*print("going this direction " + dirToGo);
+        print("speed" + moveSpeed);*/
 
         if (m_AgentRb.velocity.sqrMagnitude > 25f) // slow it down
         {
@@ -146,7 +149,7 @@ public class GardenerAgent : Agent
         //print("colliding");
         if (collision.gameObject.CompareTag("food"))
         {
-            print("colliding with food");
+            //print("colliding with food");
             FoodScript fs = collision.gameObject.GetComponent<FoodScript>();
 
 

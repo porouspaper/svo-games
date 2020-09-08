@@ -2,8 +2,8 @@ behaviors:
   Garden:
     trainer_type: ppo
     hyperparameters:
-      batch_size: 128
-      buffer_size: 2048
+      batch_size: 1280
+      buffer_size: 20480
       learning_rate: 0.0003
       beta: 0.005
       epsilon: 0.2
@@ -13,7 +13,7 @@ behaviors:
     network_settings:
       normalize: false
       hidden_units: 256
-      num_layers: 2
+      num_layers: 3
       vis_encode_type: simple
     reward_signals:
       extrinsic:
@@ -33,7 +33,7 @@ behaviors:
 curriculum:
   Garden:
     measure: progress
-    thresholds: [1, 1, 1]
+    thresholds: [0.5, 0.5, 0.5]
     min_lesson_length: 50
     signal_smoothing: true
     parameters:

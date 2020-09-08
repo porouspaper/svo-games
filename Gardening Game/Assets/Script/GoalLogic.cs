@@ -42,7 +42,7 @@ public class GoalLogic : MonoBehaviour
         Vector3 cube_size = new Vector3(4, 4, 4);
         numFoodToSpawn = ingredients.Count;
         GameObject[] f = new GameObject[numFoodToSpawn];
-        print("spawning this many food " + numFoodToSpawn);
+        //print("spawning this many food " + numFoodToSpawn);
         for (int i = 0; i < numFoodToSpawn; i++)
         {
             f[i] = Instantiate(food, new Vector3(Random.Range(-cube_size.x / 2, cube_size.x / 2), 1f,
@@ -67,16 +67,16 @@ public class GoalLogic : MonoBehaviour
         if (col.gameObject.CompareTag("ingredient1") || col.gameObject.CompareTag("ingredient2")
             || col.gameObject.CompareTag("ingredient3") || col.gameObject.CompareTag("ingredient4"))
         {
-            print("registering ingredient");
+            //print("registering ingredient");
             if (ingredients.Count == 0 && !ingredients.Contains(col.gameObject))
             {
                 timeLeft = 5.0f;
                 ingredients.Add(col.gameObject);
-                print("cook started, first ingredient registered");
+                //print("cook started, first ingredient registered");
             }
             else if (!ingredients.Contains(col.gameObject))
             {
-                print("added ingredient to register");
+                //print("added ingredient to register");
                 ingredients.Add(col.gameObject);
             }
         }
