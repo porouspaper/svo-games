@@ -137,6 +137,7 @@ public class GoalLogic : MonoBehaviour
                 {
                     for (int i = 0; i < settings.agents.Length; i++) {
                         settings.publicContribution[i] += arr[i];
+                        //print(settings.publicContribution[i]);
                     }
                 }
                 else
@@ -144,6 +145,7 @@ public class GoalLogic : MonoBehaviour
                     for (int i = 0; i < settings.agents.Length; i++)
                     {
                         settings.privateContribution[i] += arr[i];
+                        //print(settings.privateContribution[i]);
                     }
                 }
                 SpawnFood(arr);
