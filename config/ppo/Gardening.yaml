@@ -32,8 +32,8 @@ behaviors:
       team_change: 100000
 curriculum:
   Garden:
-    measure: progress
-    thresholds: [0.5, 0.5, 0.5]
+    measure: reward
+    thresholds: [20, 20, 20]
     min_lesson_length: 50
     signal_smoothing: true
     parameters:
