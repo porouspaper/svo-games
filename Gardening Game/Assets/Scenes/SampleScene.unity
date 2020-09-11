@@ -261,8 +261,8 @@ MonoBehaviour:
   - {fileID: 274437506}
   listArea: []
   schellingCoop: 0
-  allSelfish: 0
-  allCooperative: 1
+  allSelfish: 1
+  allCooperative: 0
   allCompetitive: 0
   publicContribution: 
   privateContribution: 
@@ -409,7 +409,7 @@ MonoBehaviour:
   - {fileID: 274437506}
   settings: {fileID: 374559085}
   range: 50
-  level: 1
+  level: 3
 --- !u!1 &1617472213
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +575,12 @@ PrefabInstance:
       propertyPath: m_BehaviorName
       value: Garden
       objectReference: {fileID: 0}
+    - target: {fileID: 317885996262949237, guid: 4ba3564af6cc0414786f238081fb6263,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 5e1ad048a83f241d3be2541d8a302235,
+        type: 3}
     - target: {fileID: 462545149700379999, guid: 4ba3564af6cc0414786f238081fb6263,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -725,6 +731,12 @@ PrefabInstance:
       propertyPath: m_BehaviorName
       value: Garden
       objectReference: {fileID: 0}
+    - target: {fileID: 2993012425718215999, guid: 4ba3564af6cc0414786f238081fb6263,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 5e1ad048a83f241d3be2541d8a302235,
+        type: 3}
     - target: {fileID: 3292229605102162379, guid: 4ba3564af6cc0414786f238081fb6263,
         type: 3}
       propertyPath: m_DetectableTags.Array.data[0]
@@ -785,6 +797,12 @@ PrefabInstance:
       propertyPath: m_BehaviorName
       value: Garden
       objectReference: {fileID: 0}
+    - target: {fileID: 3915793074827281772, guid: 4ba3564af6cc0414786f238081fb6263,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 5e1ad048a83f241d3be2541d8a302235,
+        type: 3}
     - target: {fileID: 3962707688013806694, guid: 4ba3564af6cc0414786f238081fb6263,
         type: 3}
       propertyPath: m_Constraints
@@ -840,6 +858,12 @@ PrefabInstance:
       propertyPath: m_BehaviorType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5469650597145619807, guid: 4ba3564af6cc0414786f238081fb6263,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 5e1ad048a83f241d3be2541d8a302235,
+        type: 3}
     - target: {fileID: 5627411537232329019, guid: 4ba3564af6cc0414786f238081fb6263,
         type: 3}
       propertyPath: m_Constraints

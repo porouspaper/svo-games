@@ -1,11 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/GardenArea.cs">
     <Files>
-      <File FileName="Assets/Script/GoalLogic.cs" Line="56" Column="1" />
-      <File FileName="Assets/Script/GardenScene.cs" />
-      <File FileName="Assets/Script/FoodScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Script/GardenArea.cs" Line="68" Column="23" />
-      <File FileName="Assets/Script/GardenerAgent.cs" Line="73" Column="25" />
+      <File FileName="Assets/Script/GoalLogic.cs" Line="18" Column="17" />
+      <File FileName="Assets/Script/GardenScene.cs" Line="41" Column="10" />
+      <File FileName="Assets/Script/FoodScript.cs" />
+      <File FileName="Assets/Script/GardenArea.cs" Line="43" Column="23" />
+      <File FileName="Assets/Script/GardenerAgent.cs" />
       <File FileName="Assets/Script/IngredientType.cs" />
       <File FileName="Assets/CameraScript.cs" />
     </Files>
