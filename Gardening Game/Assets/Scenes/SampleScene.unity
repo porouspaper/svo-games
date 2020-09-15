@@ -262,7 +262,7 @@ MonoBehaviour:
   listArea: []
   schellingCoop: 0
   allSelfish: 1
-  allCooperative: 0
+  allCooperative: 1
   allCompetitive: 0
   publicContribution: 
   privateContribution: 
