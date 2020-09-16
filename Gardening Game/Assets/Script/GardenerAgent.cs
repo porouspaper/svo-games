@@ -2,7 +2,7 @@
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
-
+using System;
 
 public class GardenerAgent : Agent
 {
@@ -15,6 +15,7 @@ public class GardenerAgent : Agent
     GardenArea m_MyArea;
     GardenScene m_scene;
     EnvironmentParameters m_ResetParams;
+    public float svoDegrees;
 
     public Material ingredient1;
     public Material ingredient2;
@@ -28,7 +29,6 @@ public class GardenerAgent : Agent
         m_MyArea = area.GetComponent<GardenArea>();
         m_scene = FindObjectOfType<GardenScene>();
         m_ResetParams = Academy.Instance.EnvironmentParameters;
-        scale = m_ResetParams.GetWithDefault("scale", 1.5f);
         switch (myType % 4)
         {
             case 0:
@@ -52,33 +52,35 @@ public class GardenerAgent : Agent
 
     }
 
-    private void Update()
-    {
-        AddReward(-0.0001f);
-    }
+
 
     public override void OnEpisodeBegin()
     {
         m_AgentRb.velocity = Vector3.zero;
 
-        transform.position = new Vector3(Random.Range(-m_MyArea.range, m_MyArea.range),
-            2f, Random.Range(-m_MyArea.range, m_MyArea.range))
+        transform.position = new Vector3(UnityEngine.Random.Range(-m_MyArea.range + 0.5f, m_MyArea.range - 0.5f),
+            0f, UnityEngine.Random.Range(-m_MyArea.range + 0.5f, m_MyArea.range - 0.5f))
             + area.transform.position;
-        transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0, 360)));
+        transform.rotation = Quaternion.Euler(new Vector3(0f, UnityEngine.Random.Range(0, 360)));
 
     }
 
 
     public void MoveAgent(float[] act)
     {
-        
+        /*print("action inputted" + act[0] + " " + act[1] + " " + act[2]);
+
+        print("moving");*/
         var dirToGo = Vector3.zero;
         var rotateDir = Vector3.zero;
 
 
         var forwardAxis = (int)act[0];
+        //print("forwardAxis" + forwardAxis);
         var rightAxis = (int)act[1];
+        //print("rightAxis" + rightAxis);
         var rotateAxis = (int)act[2];
+        //print("rotateAxis" + rotateAxis);
 
         switch (forwardAxis)
         {
@@ -112,9 +114,10 @@ public class GardenerAgent : Agent
 
 
 
-        m_AgentRb.AddForce(dirToGo * moveSpeed);
+        m_AgentRb.AddForce(dirToGo * moveSpeed, ForceMode.VelocityChange);
         transform.Rotate(rotateDir, Time.fixedDeltaTime * turnSpeed);
-
+        /*print("going this direction " + dirToGo);
+        print("speed" + moveSpeed);*/
 
         if (m_AgentRb.velocity.sqrMagnitude > 25f) // slow it down
         {
@@ -141,11 +144,12 @@ public class GardenerAgent : Agent
 
     }
 
-    void OnTriggerEnter(Collider collision)
+    void OnCollisionEnter(Collision collision)
     {
         //print("colliding");
-        if (collision.gameObject.CompareTag("Food"))
+        if (collision.gameObject.CompareTag("food"))
         {
+            //print("colliding with food");
             FoodScript fs = collision.gameObject.GetComponent<FoodScript>();
 
 
@@ -161,16 +165,47 @@ public class GardenerAgent : Agent
                         rewd += types[i] * (scale);
                     }
                 }
-                AddReward(rewd);
+                AddRewardTemp(rewd);
             }
             else
             {
-                AddReward(types[myType]);
+                AddRewardTemp(types[myType]);
             }
+
+            m_scene.foodCount -= 1;
         }
 
     }
 
+    public void AddRewardTemp(float f)
+    {
+        if (!m_scene.schellingCoop)
+        {
+            double rads = (double)(Math.PI * svoDegrees / 180);
+            var weight = 1 / 3;
+
+            for (int i = 0; i < m_scene.agents.Length; i++)
+            {
+                if (i != myType)
+                {
+                    Agent a = m_scene.agents[i];
+                    float theirf = (float)(weight * Math.Sin(rads) * f);
+                    a.AddReward(theirf);
+                    m_scene.collectiveReturn[i] += theirf;
+                }
+            }
+
+            float newf = (float)(Math.Cos(rads) * f);
+            AddReward(newf);
+            m_scene.collectiveReturn[myType] += newf;
+
+        }
+        else
+        {
+            AddReward(f);
+            m_scene.collectiveReturn[myType] += f;
+        }
+    }
 
     public override void Heuristic(float[] actionsOut)
     {

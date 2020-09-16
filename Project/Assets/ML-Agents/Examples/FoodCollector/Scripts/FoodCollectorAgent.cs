@@ -6,7 +6,7 @@ using System;
 
 public class FoodCollectorAgent : Agent
 {
-    FoodCollectorSettings m_FoodCollecterSettings;
+    public FoodCollectorSettings m_FoodCollecterSettings;
     public Agent[] allAgents;
     public GameObject area;
     FoodCollectorArea m_MyArea;
@@ -27,16 +27,19 @@ public class FoodCollectorAgent : Agent
     public Material frozenMaterial;
     public GameObject myLaser;
     public bool useVectorObs;
+    public bool noRay;
 
     EnvironmentParameters m_ResetParams;
+
 
     public override void Initialize()
     {
         m_AgentRb = GetComponent<Rigidbody>();
         m_MyArea = area.GetComponent<FoodCollectorArea>();
-        m_FoodCollecterSettings = FindObjectOfType<FoodCollectorSettings>();
         m_ResetParams = Academy.Instance.EnvironmentParameters;
         SetResetParameters();
+        Physics.IgnoreLayerCollision(0, 8);
+
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -48,6 +51,26 @@ public class FoodCollectorAgent : Agent
             sensor.AddObservation(localVelocity.z);
             sensor.AddObservation(System.Convert.ToInt32(m_Shoot));
         }
+
+        /*if (noRay)
+        {
+            for (int i = 0; i < allAgents.Length; i++)
+            {
+                var localPositions = allAgents[i].transform.position;
+                sensor.AddObservation(localPositions.x);
+                sensor.AddObservation(localPositions.y);
+                sensor.AddObservation(localPositions.z);
+            }
+
+            var foods = GameObject.FindGameObjectsWithTag("food");
+            print("food in collect obs " + foods.Length);
+            foreach (GameObject food in foods)
+            {
+                sensor.AddObservation(food.transform.position.x);
+                sensor.AddObservation(food.transform.position.y);
+                sensor.AddObservation(food.transform.position.z);
+            }
+        }*/
     }
 
     public Color32 ToColor(int hexVal)
@@ -154,8 +177,12 @@ public class FoodCollectorAgent : Agent
 
     void Hit()
     {
-        Freeze();
-        //AddRewardTemp(-50);
+        if (!m_FoodCollecterSettings.SchellingCoop)
+        {
+            Freeze();
+            //AddRewardTemp(-50);
+
+        }
     }
 
     void logLaser()
@@ -200,23 +227,29 @@ public class FoodCollectorAgent : Agent
         {
             actionsOut[2] = 2f;
         }
-        if (Input.GetKey(KeyCode.W))
+        else if (Input.GetKey(KeyCode.W))
         {
             actionsOut[0] = 1f;
         }
-        if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
         {
             actionsOut[2] = 1f;
         }
-        if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
             actionsOut[0] = 2f;
+        }
+        else
+        {
+            actionsOut[0] = 0;
+            actionsOut[1] = 0;
         }
         actionsOut[3] = Input.GetKey(KeyCode.Space) ? 1.0f : 0.0f;
     }
 
     public override void OnEpisodeBegin()
     {
+        m_FoodCollecterSettings.EnvironmentReset();
         m_Shoot = false;
         m_AgentRb.velocity = Vector3.zero;
         myLaser.transform.localScale = new Vector3(0f, 0f, 0f);
@@ -257,21 +290,27 @@ public class FoodCollectorAgent : Agent
 
     public void AddRewardTemp(int f)
     {
-        var svoDegrees = m_FoodCollecterSettings.svoDegrees;
-        double rads = Math.PI * svoDegrees / 180;
-        var weight = 1 / (allAgents.Length - 1);
-
-        for(int i = 0; i < allAgents.Length; i++)
+        if (!m_FoodCollecterSettings.SchellingCoop)
         {
-            if (i != agent_number)
-            {
-                Agent a = allAgents[i];
-                a.AddReward((float)(weight * Math.Sin(rads) * f));
-            }
-        }
-        
-        AddReward((float)(Math.Cos(rads) * f));
+            var svoDegrees = m_FoodCollecterSettings.svoDegrees[agent_number];
+            double rads = (double) (Math.PI * svoDegrees / 180);
+            var weight = 1 / (allAgents.Length - 1);
 
+            for (int i = 0; i < allAgents.Length; i++)
+            {
+                if (i != agent_number)
+                {
+                    Agent a = allAgents[i];
+                    a.AddReward((float)(weight * Math.Sin(rads) * f));
+                }
+            }
+
+            AddReward((float)(Math.Cos(rads) * f));
+        }
+        else
+        {
+            AddReward(f);
+        }
         logReward(f);
     }
 

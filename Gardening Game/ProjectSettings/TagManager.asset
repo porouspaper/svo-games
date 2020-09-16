@@ -4,12 +4,19 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Floor
-  - Food
-  - Agent
+  - Agent1
+  - Agent4
+  - Agent2
+  - Agent3
+  - wall
+  - food
+  - ingredient1
+  - ingredient2
+  - ingredient3
+  - ingredient4
+  - selfGoal
+  - coopGoal
   - goal
-  - ingredient
-  - ball
   layers:
   - Default
   - TransparentFX
